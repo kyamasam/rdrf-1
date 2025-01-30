@@ -56,3 +56,4 @@ rdrf/rdrf/static/proms/js/runtime-bundle.js
 yarn_cache/
 yarn-error.log
 
+venv/
