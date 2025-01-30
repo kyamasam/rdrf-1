@@ -1,185 +1,225 @@
-{% load static %}
-{% load version_number %}
-{% load i18n %}
-{% load translate %}
+{% load static %} {% load version_number %} {% load i18n %} {% load translate %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% trans "RDRF - Rare Disease Registry Framework" %} </title>
+    <title>{% trans "Kenya MOH - Chronic Diseases Registry" %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/compiled/theme.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap-5.0.0/css/bootstrap.min.css' %}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/compiled/theme.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/vendor/animate.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap-5.0.0/css/bootstrap.min.css' %}"
+    />
     <!-- javascript -->
-    <script type="text/javascript" src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"
+    ></script>
     <script type="text/javascript" src="{% static 'js/theme.js' %}"></script>
 
     <!--[if lt IE 9]>
-      <script type="text/javascript" src="{% static 'js/vendor/html5shiv-3.7.3.min.js' %}"></script>
+      <script
+        type="text/javascript"
+        src="{% static 'js/vendor/html5shiv-3.7.3.min.js' %}"
+      ></script>
     <![endif]-->
-</head>
-<body id="home">
+  </head>
+  <body id="home">
     <nav class="navbar navbar-expand-lg navbar-dark hero pt-0">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".bs-navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="{% url 'landing' %}" class="navbar-brand">RDRF {% version_number %}</a>
-            </div>
-            <div class="navbar-expanded-lg">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://muccg.github.io/rdrf/">{% trans "Project" %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/muccg/rdrf/">{% trans "Source code" %}</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            {% trans "Registries on this site" %}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" data-bs-display="static">
-                            {% if registries|length %}
-                            {% for reg in registries %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'registry' reg.code %}">
-                                    {{reg.name|translate}}{% if reg.version %} v{{reg.version}}{% endif %}
-                                </a>
-                            </li>
-                            {% endfor %}
-                            {% else %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'admin:login' %}?next=/admin/rdrf/registry/">Login</a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target=".bs-navbar-collapse"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{% url 'landing' %}" class="navbar-brand">
+            <img
+              src="{% static 'images/logos/crean_logo.png' %}"
+              alt="CREA-N Logo"
+              height="50"
+            />
+          </a>
         </div>
+        <div class="navbar-expanded-lg">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.health.go.ke/"
+                >{% trans "Clinical Research Health Network (CREA-N) " %}</a
+              >
+            </li>
+            <li class="nav-item dropdown"
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                {% trans "Registries" %}
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                data-bs-display="static"
+              >
+                {% if registries|length %} {% for reg in registries %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'registry' reg.code %}">
+                    {{reg.name|translate}}{% if reg.version %}
+                    v{{reg.version}}{% endif %}
+                  </a>
+                </li>
+                {% endfor %} {% else %}
+                <li>
+                    <a 
+                    class="dropdown-item"
+                    href="{% url 'admin:login' %}?next=/admin/rdrf/registry/"
+                    >Login</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <div id="hero">
-        <div class="container">
-            <h1 class="hero-text animated fadeInDown">
-                {% trans "The Rare Disease Registry" %}<br>
-                {% trans "Framework" %}
-
-            </h1>
-            <p class="sub-text animated fadeInDown">
-                {% trans "Create a patient registry without software development" %}.
-            </p>
-
-        </div>
+      <div class="container">
+        <h1 class="hero-text animated fadeInDown">
+          {% trans "Kenya Rare Diseases" %}<br />
+          {% trans "National Registry" %}
+        </h1>
+        <p class="sub-text animated fadeInDown">
+          Comprehensive tracking of Cancer, Diabetes, and Hypertension
+        </p>
+      </div>
     </div>
 
     <div id="features">
-        <div class="container">
-            <div class="row header">
-                <div class="col-md-12 mb-4">
-                    <h3>{% trans "Need a patient registry for your department, clinic or community?" %}</h3>
-                    <p>{% trans "RDRF allows for rapid creation of patient registries" %}.</p>
-                </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="row header">
-                <div class="col-md-12 my-4">
-                    <h3>{% trans "What is the Rare Disease Registry Framework?" %}</h3>
-                    <p>{% blocktrans %}
-              The Rare Disease Registry Framework (RDRF) is an open source tool for the creation of web-based patient registries. What makes it unique is that data entry forms and questionnaires are
-                        based on reusable data element definitions (called "Common Data Elements" ) which can be created and/or loaded into the system at
-                      runtime. This means that registries can be created and modified without changes to the source code. RDRF has been developed at the Centre for Comparative Genomics, Murdoch University, Western Australia in partnership with the Office of Population Health Genomics, Department of Health Western Australia.
-                        {% endblocktrans %}</p>
-                </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="row header">
-                <div class="col-md-12 mt-4">
-                    <h3>{% trans "Publications" %}</h3>
-                    <p>
-M.I. Bellgard, L. Render, M. Radochonski, and A. Hunter, Second generation registry framework, Source Code for Biology and Medicine, 9 (2014), 14.
-                    </p>
-                    <p>
-M.I. Bellgard, K.R. Napier, A.H. Bittles, J. Szer, S. Fletcher, N. Zeps, A.A. Hunter and J. Goldblatt, Design of a framework for the deployment of collaborative independent rare disease-centric registries: Gaucher Disease Registry model, Blood Cells Molecules and Diseases, (in press).
-                    </p>
-                    <p>
-K.R. Napier, J. Pang, L. Lamont, C.E. Walker, H.J.S. Dawkins, A.A. Hunter, F.M. van Bockxmeer, G.F. Watts, M.I. Bellgard, A web-based registry for familial hypercholesterolaemia Heart, Lung and Circulation, (in press).
-                    </p>
-                    <p>
-M.I. Bellgard, K. Napier, L. Render, M. Radochonski, L. Lamont, C. Graham, S.D. Wilton, S. Fletcher, J. Goldblatt, A. Hunter, T. Weeramanthri, A Registry Framework Enabling Patient-Centred Care. Studies in Health Technology and Informatics, 214 (2015), 8-14.
-                    </p>
-                    <p>
-M.I. Bellgard, C.E. Walker, K.R. Napier, L. Lamont, A.A. Hunter, L. Render, M. Radochonski, J. Pang, A. Pedrotti, D.R. Sullivan, K. Kostner, W. Bishop, P.M. George, R.C. O’Brien, P.M. Clifton, F.M. van Bockxmeer, S.J. Nicholls, I. Hamilton-Craig, H.J.S. Dawkins and G.F. Watts, Design of the Familial Hypercholesterolaemia Australasia Network Registry: creating opportunities for greater international collaboration. Journal of Atherosclerosis and Thrombrosis, (in press).
-                    </p>
-                    <p>
-M. Bellgard, C. Beroud, K. Parkinson, T. Harris, S. Ayme, G. Baynam, T. Weeramanthri, H. Dawkins, and A. Hunter, Dispelling myths about rare disease registry system development, Source Code for Biology and Medicine, 8 (2013), 21.
-                    </p>
-                    <p>
-M.I. Bellgard, A. Macgregor, F. Janon, A. Harvey, P. O'Leary, A. Hunter, and H. Dawkins, A modular approach to disease registry design: successful adoption of an Internet-based rare disease registry, Human Mutation, 33 (2012), E2356–66.
-                    </p>
-                    <p>
-M. Rodrigues, G. Hammond-Tooke, A. Kidd, D. Love, R. Patel, H. Dawkins, M. Bellgard, and R. Roxburgh, The New Zealand neuromuscular disease registry, Journal of Clinical Neuroscience, 19 (2012), 1749-1750.
-                    </p>
-                </div>
-            </div>
-
+      <div class="container">
+        <div class="row header">
+          <div class="col-md-12 mb-4">
+            <h3>Empowering Health Management through Data</h3>
+            <p>
+              A centralized registry for critical chronic diseases in Kenya.
+            </p>
+          </div>
         </div>
+        <div class="dropdown-divider"></div>
+        <div class="row header">
+          <div class="col-md-12 my-4">
+            <h3>{% trans "About the Kenya Chronic Diseases Registry" %}</h3>
+            <p>
+              {% blocktrans %} The Kenya Clinical Research Health Network (CREA-N)  Chronic Diseases
+              Registry is a comprehensive platform designed to track and manage
+              critical health conditions including Cancer, Diabetes, and
+              Hypertension. This registry enables healthcare professionals and
+              policymakers to: - Monitor disease prevalence and trends - Improve
+              patient care and treatment strategies - Support evidence-based
+              health policy decisions - Enhance national health research
+              capabilities {% endblocktrans %}
+            </p>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="row header">
+          <div class="col-md-12 mt-4">
+            <h3>{% trans "Key Focus Areas" %}</h3>
+            <div class="row">
+              <div class="col-md-4">
+                <h4>{% trans "Cancer Registry" %}</h4>
+                <p>
+                  Comprehensive tracking of cancer cases, types, and treatment
+                  outcomes across Kenya.
+                </p>
+              </div>
+              <div class="col-md-4">
+                <h4>{% trans "Diabetes Registry" %}</h4>
+                <p>
+                  Monitoring diabetes prevalence, management, and associated
+                  health indicators.
+                </p>
+              </div>
+              <div class="col-md-4">
+                <h4>{% trans "Hypertension Registry" %}</h4>
+                <p>
+                  Tracking blood pressure trends and cardiovascular health
+                  across populations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="footer">
-        <div class="container">
-            <div class="row mb-2">
-                <div class="col-sm-12 menu">
-                    <ul class="list-group list-group-horizontal text-center">
-                        <li class="col-sm-3 flex-fill">
-                            <a href="mailto:rdrf@ccg.murdoch.edu.au">rdrf@ccg.murdoch.edu.au</a>
-                        </li>
-                        <li class="col-sm-3 flex-fill">
-                            <a href="https://www.murdoch.edu.au/research/anpc">Australian National Phenome Centre</a>
-                        </li>
-                        <li class="col-sm-3 flex-fill">
-                            <a href="http://www.genomics.health.wa.gov.au/">Office of Population Health Genomics</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-12 menu">
-                    <ul class="list-group list-group-horizontal text-center">
-                        <li class="col-sm-3 flex-fill">
-                            <a href="https://muccg.github.io/rdrf/">{% trans "Project" %}</a>
-                        </li>
-                        <li class="col-sm-3 flex-fill">
-                            <a href="https://muccg.github.io/rdrf/docs/">{% trans "Documentation" %}</a>
-                        </li>
-                        <li class="col-sm-3 flex-fill">
-                            <a href="https://github.com/muccg/rdrf/">{% trans "Source code" %}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 copyright">
-                    {% trans "Authorised by" %} Prof. Matthew Bellgard, {% trans "Director" %}, Centre for Comparative Genomics, Murdoch University.
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 copyright">
-                    {% trans "Copyright" %} © 2015. Murdoch University. {% trans "Landing page" %} React {% trans "theme" %} {% trans "Copyright" %} © 2014
-                </div>
-            </div>
-
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-12 menu">
+            <ul class="list-group list-group-horizontal text-center">
+              <li class="col-sm-4 flex-fill">
+                <a href="mailto:chronicdiseases@health.go.ke"
+                  >chronicdiseases@health.go.ke</a
+                >
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="https://www.health.go.ke/">Kenya Clinical Research Health Network (CREA-N) </a>
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="#">National Health Research</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="row mb-3">
+          <div class="col-sm-12 menu">
+            <ul class="list-group list-group-horizontal text-center">
+              <li class="col-sm-4 flex-fill">
+                <a href="#">{% trans "About the Registry" %}</a>
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="#">{% trans "Data Privacy" %}</a>
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="#">{% trans "Contact Us" %}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 copyright">
+            {% trans "Authorised by" %} Clinical Research Health Network (CREA-N) , Republic of Kenya
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 copyright">
+            {% trans "Copyright" %} © {% now "Y" %} Kenya Clinical Research Health Network (CREA-N) .
+            {%trans "All Rights Reserved" %}
+          </div>
+        </div>
+      </div>
     </div>
-<script type="text/javascript" src="{% static 'bootstrap-5.0.0/js/bootstrap.bundle.min.js' %}"></script>
-</body>
+    <script
+      type="text/javascript"
+      src="{% static 'bootstrap-5.0.0/js/bootstrap.bundle.min.js' %}"
+    ></script>
+  </body>
 </html>

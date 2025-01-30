@@ -1,45 +1,44 @@
-version: '2'
+version: "2"
 services:
-
   base:
     build:
       context: ./
       dockerfile: Dockerfile-base
       args:
         http_proxy:
-    image: muccg/rdrf-base
+    image: rdrf-base
 
   builder:
+    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile-builder
-      args:
-        http_proxy:
-    image: muccg/rdrf-builder
+    image: rdrf-builder
     command: releasetarball
     network_mode: host
     environment:
-        BUILD_VERSION:
-        GIT_BRANCH:
-        PIP_INDEX_URL:
-        PIP_TRUSTED_HOST:
-        NO_PROXY:
+      BUILD_VERSION:
+      GIT_BRANCH:
+      PIP_INDEX_URL:
+      PIP_TRUSTED_HOST:
+      NO_PROXY:
     volumes:
       - ./build:/data
+    depends_on:
+      - base
 
   node:
-      build:
-          context: ./
-          dockerfile: Dockerfile-node
-      image: muccg/rdrf-node
-      working_dir: /data/app/rdrf/rdrf/frontend
-      command: build
-      environment:
-          YARN_CACHE_FOLDER: /opt/yarn_cache
-      volumes:
-        - ./build:/data
-        - ./yarn_cache:/opt/yarn_cache
-
+    build:
+      context: ./
+      dockerfile: Dockerfile-node
+    image: rdrf-node
+    working_dir: /data/app/rdrf/rdrf/frontend
+    command: build
+    environment:
+      YARN_CACHE_FOLDER: /opt/yarn_cache
+    volumes:
+      - ./build:/data
+      - ./yarn_cache:/opt/yarn_cache
 
   dev:
     build:
@@ -49,9 +48,11 @@ services:
         ARG_PIP_INDEX_URL: ${PIP_INDEX_URL}
         ARG_PIP_TRUSTED_HOST: ${PIP_TRUSTED_HOST}
         http_proxy:
-    image: muccg/rdrf-dev
+    image: rdrf-dev
     volumes:
       - .:/app
+    depends_on:
+      - base
 
   prod:
     build:
@@ -59,10 +60,12 @@ services:
       dockerfile: Dockerfile-prod
       args:
         ARG_BUILD_VERSION: ${BUILD_VERSION}
-    image: muccg/rdrf:${BUILD_VERSION}
+    image: rdrf:${BUILD_VERSION}
+    depends_on:
+      - base
 
   lint:
     image: alpine/flake8
     working_dir: /apps
     volumes:
-        - ./:/apps
+      - ./:/apps

@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: ccg-django-utils
+Version: 0.4.2
+Summary: Extra CCG code for Django applications.
+Home-page: https://github.com/muccg/ccg-django-utils
+Author: Centre for Comparative Genomics
+Author-email: web@ccg.murdoch.edu.au
+License: GNU General Public License, version 2
+Keywords: ccg django wsgi utils
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Requires-Dist: six
+
+Extra code used by the Centre for Comparative Genomics in our Django applications.
+
+

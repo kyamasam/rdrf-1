@@ -18,6 +18,14 @@ class RegistryRouter:
         ("rdrf", "modjgo"),
         ("rdrf", "clinicaldata"),
     )
+    pseudonym_models = (
+        ("rdrf", "patientpseudonym"),  
+    )
+
+    @classmethod
+    def is_pseudonym(cls, app_label, model_name):
+        return (app_label, model_name) in cls.pseudonym_models
+
 
     @classmethod
     def is_clinical(cls, app_label, model_name):
@@ -27,9 +35,11 @@ class RegistryRouter:
         return self.choose_db(model._meta.app_label, model._meta.model_name)
 
     def choose_db(self, app_label, model_name):
-        clinical = self.is_clinical(app_label, model_name)
-        return "clinical" if clinical else "default"
-
+        if self.is_clinical(app_label, model_name):
+            return "clinical"
+        elif self.is_pseudonym(app_label, model_name):
+            return "pseudonyms"
+        return "default"
     def db_for_read(self, model, **hints):
         return self.choose_db_model(model)
 
@@ -37,7 +47,11 @@ class RegistryRouter:
         return self.choose_db_model(model)
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
-        return (db == self.choose_db(app_label, model_name))
+        if model_name is None:
+            return True
+            
+        target_db = self.choose_db(app_label, model_name)
+        return db == target_db 
 
 
 def reset_sql_sequences(apps):

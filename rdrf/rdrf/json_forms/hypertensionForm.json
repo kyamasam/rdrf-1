@@ -1,0 +1,1022 @@
+{
+  "label": "Hypertension",
+  "components": [
+    {
+      "label": "Behaviour",
+      "key": "behaviourTabHyper",
+      "components": [
+        {
+          "label": "Smoking",
+          "type": "fieldset",
+          "key": "smoking",
+          "components": [
+            {
+              "type": "radio",
+              "label": "Smoking Amount",
+              "key": "smokingAmount",
+              "values": [
+                {
+                  "label": "Less than/Equal to 1 pack consumed per day",
+                  "value": "lessThanOne"
+                },
+                {
+                  "label": "More than 1 pack consumed/day",
+                  "value": "moreThanOne"
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "number",
+              "label": "Age started Smoking",
+              "key": "ageStartedSmoking",
+              "validate": {
+                "min": 0,
+                "max": 120
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "number",
+              "label": "No. of Years Smoking",
+              "key": "yearsOfSmoking",
+              "validate": {
+                "min": 0,
+                "max": 120
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Secondhand Smoke",
+              "type": "checkbox",
+              "key": "secondhandSmoke",
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "number",
+              "label": "With Exposure to SHS Number of Years",
+              "key": "shsExposureYears",
+              "conditional": {
+                "show": true,
+                "when": "secondhandSmoke",
+                "eq": true
+              },
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Physical Activity",
+          "type": "fieldset",
+          "key": "physicalActivity",
+          "components": [
+            {
+              "type": "textfield",
+              "label": "Type",
+              "key": "activityType",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "type": "number",
+              "label": "Minutes per Exercise",
+              "key": "minutesPerExercise",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "radio",
+              "label": "Frequency",
+              "key": "frequency",
+              "values": [
+                {
+                  "label": "Daily",
+                  "value": "daily"
+                },
+                {
+                  "label": "Weekly",
+                  "value": "weekly"
+                },
+                {
+                  "label": "Monthly",
+                  "value": "monthly"
+                },
+                {
+                  "label": "Yearly",
+                  "value": "yearly"
+                },
+                {
+                  "label": "Quarterly",
+                  "value": "quarterly"
+                }
+              ],
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Diet",
+      "key": "dietTabHyper",
+      "components": [
+        {
+          "label": "Diet",
+          "key": "diet",
+          "components": [
+            {
+              "label": "Typical Diet Intake",
+              "type": "fieldset",
+              "key": "typicalDiet",
+              "components": [
+                {
+                  "label": "Fish, Meat, Poultry, Egg",
+                  "type": "fieldset",
+                  "key": "protein",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Type of Protein Foods",
+                      "key": "proteinSpecify",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "proteinFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Rice, Grains, Bread, Cereals, Tubers",
+                  "type": "fieldset",
+                  "key": "grains",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Type of Grains/Cereals",
+                      "key": "grainsSpecify",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "grainsFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Fruits/Vegetables",
+                  "type": "fieldset",
+                  "key": "produce",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Type of Fruits/Vegetables",
+                      "key": "produceSpecify",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "produceFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Fats, Oils",
+                  "type": "fieldset",
+                  "key": "fats",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Type of Fats/Oils Used",
+                      "key": "fatsSpecify",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "fatsFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Sugar, Sweet",
+                  "type": "fieldset",
+                  "key": "sugar",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Type of Sugar/Sweets Consumed",
+                      "key": "sugarSpecify",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "sugarFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Milk and Milk Products",
+                  "type": "fieldset",
+                  "key": "dairy",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Type of Milk/Dairy Products",
+                      "key": "dairySpecify",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "dairyFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Drinking of Alcoholic Beverage",
+              "type": "fieldset",
+              "key": "alcohol",
+              "components": [
+                {
+                  "type": "textfield",
+                  "label": "Type of Alcoholic Beverage",
+                  "key": "alcoholType",
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "type": "textfield",
+                  "label": "Amount Consumed",
+                  "key": "alcoholAmount",
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Unit of Measure",
+                  "key": "alcoholUnit",
+                  "values": [
+                    {
+                      "label": "Bottle",
+                      "value": "bottle"
+                    },
+                    {
+                      "label": "Glass",
+                      "value": "glass"
+                    },
+                    {
+                      "label": "Shot",
+                      "value": "shot"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "alcoholFrequency",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "type": "number",
+                  "label": "Age started drinking alcohol",
+                  "key": "alcoholStartAge",
+                  "validate": {
+                    "min": 0,
+                    "max": 120
+                  },
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "type": "number",
+                  "label": "No. of Years drinking alcohol",
+                  "key": "alcoholYears",
+                  "validate": {
+                    "min": 0,
+                    "max": 120
+                  },
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            }
+          ],
+          "input": true,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Patient History",
+      "key": "patientHistoryTabHyper",
+      "components": [
+        {
+          "label": "Family History - Chronic Illnesses",
+          "key": "familyChronicIllnesses",
+          "type": "container",
+          "components": [
+            {
+              "label": "Chronic Conditions",
+              "key": "chronicConditions",
+              "type": "selectboxes",
+              "values": [
+                {
+                  "label": "Hypertension",
+                  "value": "hypertension"
+                },
+                {
+                  "label": "CVD",
+                  "value": "cvd"
+                },
+                {
+                  "label": "Cancer",
+                  "value": "cancer"
+                },
+                {
+                  "label": "Asthma",
+                  "value": "asthma"
+                },
+                {
+                  "label": "TB",
+                  "value": "tb"
+                },
+                {
+                  "label": "Diabetes",
+                  "value": "diabetes"
+                }
+              ],
+              "input": true,
+              "tableView": false,
+              "inputType": "checkbox"
+            },
+            {
+              "label": "Other Conditions (please specify)",
+              "key": "otherConditions",
+              "type": "textarea",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": true,
+          "tableView": false
+        },
+        {
+          "label": "Family History Details",
+          "key": "familyHistoryDetails",
+          "type": "datagrid",
+          "components": [
+            {
+              "label": "Family Member",
+              "key": "familyMember",
+              "type": "textfield",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Age at Diagnosis",
+              "key": "ageAtDiagnosis",
+              "type": "number",
+              "validate": {
+                "min": 0,
+                "max": 120
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Condition",
+              "key": "condition",
+              "type": "select",
+              "data": {
+                "values": [
+                  {
+                    "label": "Hypertension",
+                    "value": "hypertension"
+                  },
+                  {
+                    "label": "CVD",
+                    "value": "cvd"
+                  },
+                  {
+                    "label": "Cancer",
+                    "value": "cancer"
+                  },
+                  {
+                    "label": "Asthma",
+                    "value": "asthma"
+                  },
+                  {
+                    "label": "TB",
+                    "value": "tb"
+                  },
+                  {
+                    "label": "Diabetes",
+                    "value": "diabetes"
+                  }
+                ]
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": true,
+          "tableView": false
+        },
+        {
+          "label": "Obstetrics/Gynaecology History",
+          "key": "obstetricHistory",
+          "type": "container",
+          "components": [
+            {
+              "label": "Parity",
+              "key": "parity",
+              "type": "number",
+              "validate": {
+                "min": 0
+              },
+              "tooltip": "Number of pregnancies carried to viable gestational age",
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Previous Pregnancies",
+              "key": "previousPregnancies",
+              "type": "datagrid",
+              "components": [
+                {
+                  "label": "Year",
+                  "key": "year",
+                  "type": "number",
+                  "validate": {
+                    "min": 1900,
+                    "max": 2030
+                  },
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "label": "Outcome",
+                  "key": "outcome",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Live Birth",
+                        "value": "liveBirth"
+                      },
+                      {
+                        "label": "Still Birth",
+                        "value": "stillBirth"
+                      },
+                      {
+                        "label": "Miscarriage",
+                        "value": "miscarriage"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Complications",
+                  "key": "complications",
+                  "type": "textarea",
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": true,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Hypertension Data",
+      "key": "hypertensionDataTabHyper",
+      "components": [
+        {
+          "label": "Referral Information",
+          "key": "referralInformation",
+          "type": "panel",
+          "components": [
+            {
+              "label": "Referral Date",
+              "key": "referralDate",
+              "type": "datetime",
+              "required": true,
+              "input": true,
+              "tableView": false,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Name of Referring Health Facility/Doctor",
+              "key": "referringDoctor",
+              "type": "textfield",
+              "required": true,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Reason for Referral",
+              "key": "referralReason",
+              "type": "textarea",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Consultation Details",
+          "key": "consultationDetails",
+          "type": "panel",
+          "components": [
+            {
+              "label": "Date of Consultation/Diagnosis",
+              "key": "consultationDate",
+              "type": "datetime",
+              "input": true,
+              "tableView": false,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Physical Measurements",
+              "key": "physicalMeasurements",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Height (M)",
+                  "key": "height",
+                  "type": "number",
+                  "validate": {
+                    "min": 0,
+                    "max": 3
+                  },
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "label": "Weight (Kg)",
+                  "key": "weight",
+                  "type": "number",
+                  "validate": {
+                    "min": 0,
+                    "max": 500
+                  },
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "label": "BMI Classification",
+                  "key": "bmiClassification",
+                  "type": "textfield",
+                  "calculated": {
+                    "event": "change",
+                    "condition": "show = row.weight / (row.height * row.height)"
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Physiologic State",
+          "key": "physiologicState",
+          "type": "radio",
+          "values": [
+            {
+              "label": "Pregnant",
+              "value": "pregnant"
+            },
+            {
+              "label": "Breastfeeding",
+              "value": "breastfeeding"
+            },
+            {
+              "label": "Not applicable",
+              "value": "notApplicable"
+            }
+          ],
+          "input": true,
+          "tableView": false
+        },
+        {
+          "label": "Presenting Symptoms",
+          "key": "presentingSymptoms",
+          "type": "container",
+          "components": [
+            {
+              "label": "Symptoms",
+              "key": "symptoms",
+              "type": "selectboxes",
+              "values": [
+                {
+                  "label": "Polyuria",
+                  "value": "polyuria"
+                },
+                {
+                  "label": "Polydipsia",
+                  "value": "polydipsia"
+                },
+                {
+                  "label": "Polyphagia",
+                  "value": "polyphagia"
+                },
+                {
+                  "label": "Weight Loss",
+                  "value": "weightLoss"
+                },
+                {
+                  "label": "Peripheral neuropathy",
+                  "value": "peripheralNeuropathy"
+                }
+              ],
+              "input": true,
+              "tableView": false,
+              "inputType": "checkbox"
+            },
+            {
+              "label": "Other Symptoms",
+              "key": "otherSymptoms",
+              "type": "textarea",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": true,
+          "tableView": false
+        },
+        {
+          "label": "Laboratory Investigations",
+          "key": "laboratoryInvestigations",
+          "type": "panel",
+          "components": [
+            {
+              "label": "Hemogram",
+              "key": "hemogram",
+              "type": "textarea",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "HBA1C",
+              "key": "hba1c",
+              "type": "number",
+              "validate": {
+                "min": 0,
+                "max": 20
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Lipid Profile",
+              "key": "lipidProfile",
+              "type": "textarea",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "UECs",
+              "key": "uecs",
+              "type": "textarea",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "FBS",
+              "key": "fbs",
+              "type": "number",
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "RBS",
+              "key": "rbs",
+              "type": "number",
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "OGTT",
+              "key": "ogtt",
+              "type": "number",
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Treatment",
+          "key": "treatment",
+          "type": "panel",
+          "components": [
+            {
+              "label": "Anti-hypertensive",
+              "key": "antiHypertensive",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Drug Class",
+                  "key": "drugClass",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "ACE Inhibitors",
+                        "value": "aceInhibitors"
+                      },
+                      {
+                        "label": "Beta Blockers",
+                        "value": "betaBlockers"
+                      },
+                      {
+                        "label": "Calcium Channel Blockers",
+                        "value": "calciumChannelBlockers"
+                      },
+                      {
+                        "label": "Diuretics",
+                        "value": "diuretics"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Drug Name",
+                  "key": "drugName",
+                  "type": "textfield",
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    }
+  ],
+  "key": "hypertensionTabs",
+  "type": "tabs",
+  "input": false,
+  "tableView": false
+}

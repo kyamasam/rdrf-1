@@ -289,7 +289,7 @@ class Command(BaseCommand):
     def _yield_misc_strings(self):
         # Couldn't  get these strings to extract for some reason
         yield None, "Next of kin country"
-        yield None, "Next of kin state"
+        yield None, "Next of kin county"
         yield None, "Permission Matrix for %(registry)s"
         yield None, "Welcome"
 

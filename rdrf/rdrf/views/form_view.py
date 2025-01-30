@@ -12,6 +12,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from rdrf.models.definition.models import RegistryForm, Registry, QuestionnaireResponse
 from rdrf.models.definition.models import Section, CommonDataElement, ClinicalData
+from rdrf.settings import FORMIO_URL
 from registry.patients.models import Patient, ParentGuardian
 from rdrf.forms.dynamic.dynamic_forms import create_form_class_for_section
 from rdrf.db.dynamic_data import DynamicDataWrapper
@@ -646,7 +647,7 @@ class FormView(View):
         form_display_name = (
             form_obj.display_name if form_obj.display_name else form_obj.name
         )
-        sections, display_names, ids = self._get_sections(form_obj)
+        sections, display_names, ids,form_types = self._get_sections(form_obj)
         form_section = {}
         section_element_map = {}
         total_forms_ids = {}
@@ -836,6 +837,7 @@ class FormView(View):
             "current_form_name": form_obj.display_name
             if form_obj.display_name
             else de_camelcase(form_obj.name),
+            "registry_id": registry.id,
             "registry": registry_code,
             "registry_code": registry_code,
             "form_name": form_id,
@@ -850,6 +852,8 @@ class FormView(View):
             "forms": form_section,
             "my_contexts_url": patient.get_contexts_url(self.registry),
             "display_names": display_names,
+            "formio_url": FORMIO_URL,
+            "form_types": form_types,
             "section_element_map": section_element_map,
             "total_forms_ids": total_forms_ids,
             "initial_forms_ids": initial_forms_ids,
@@ -1058,15 +1062,17 @@ class FormView(View):
         sections = []
         display_names = {}
         ids = {}
+        form_types={}
         for s in section_parts:
             try:
                 sec = Section.objects.get(code=s.strip())
                 display_names[s] = sec.display_name
                 ids[s] = sec.id
+                form_types[s] = sec.is_custom_form
                 sections.append(s)
             except ObjectDoesNotExist:
                 logger.error("Section %s does not exist" % s)
-        return sections, display_names, ids
+        return sections, display_names, ids, form_types
 
     def get_registry_form(self, form_id):
         return RegistryForm.objects.get(id=form_id)
@@ -1112,7 +1118,7 @@ class FormView(View):
         """
         user = kwargs.get("user", None)
         patient_model = kwargs.get("patient_model", None)
-        sections, display_names, ids = self._get_sections(self.registry_form)
+        sections, display_names, ids, form_types = self._get_sections(self.registry_form)
         form_section = {}
         section_element_map = {}
         total_forms_ids = {}
@@ -1192,6 +1198,7 @@ class FormView(View):
             if self.registry_form.display_name
             else de_camelcase(self.registry_form.name),
             "registry": self.registry.code,
+            "registry_id": self.registry.id,
             "registry_code": self.registry.code,
             "form_name": self.form_id,
             "form_display_name": self.registry_form.name,
@@ -1200,8 +1207,10 @@ class FormView(View):
             "patient": patient_model,
             "patient_name": self._get_patient_name(),
             "sections": sections,
+            "formio_url": FORMIO_URL,
             "forms": form_section,
             "display_names": display_names,
+            "form_types": form_types,
             "section_ids": ids,
             "not_linked": patient_model.is_linked if patient_model else True,
             "section_element_map": section_element_map,
@@ -1738,6 +1747,8 @@ class QuestionnaireView(FormView):
                 "sections": sections,
                 "forms": form_section,
                 "display_names": display_names,
+                "formio_url": FORMIO_URL,
+
                 "section_element_map": section_element_map,
                 "section_field_ids_map": section_field_ids_map,
                 "total_forms_ids": total_forms_ids,

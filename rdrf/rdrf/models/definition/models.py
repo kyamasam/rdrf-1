@@ -72,10 +72,10 @@ class Section(models.Model):
     """
     A group of fields that appear on a form as a unit
     """
-    code = models.CharField(max_length=100, unique=True)
+    code = models.CharField("Name (same as form in formIo)",max_length=100, unique=True)
     display_name = models.CharField(max_length=200)
     questionnaire_display_name = models.CharField(max_length=200, blank=True)
-    elements = models.TextField()
+    elements = models.TextField(blank=True, null=True)
     allow_multiple = models.BooleanField(
         default=False, help_text="Allow extra items to be added"
     )
@@ -83,6 +83,7 @@ class Section(models.Model):
         blank=True, null=True, help_text="Extra rows to show if allow_multiple checked"
     )
     questionnaire_help = models.TextField(blank=True)
+    is_custom_form= models.BooleanField(default=False)
 
     def natural_key(self):
         return (self.code,)
@@ -1197,7 +1198,7 @@ class RegistryForm(models.Model):
     )
     header = models.TextField(blank=True)
     questionnaire_display_name = models.CharField(max_length=80, blank=True)
-    sections = models.TextField(help_text="Comma-separated list of sections")
+    sections = models.TextField(help_text="Comma-separated list of sections, as defined in The Section Forms")
     is_questionnaire = models.BooleanField(
         default=False,
         help_text="Check if this form is questionnaire form for it's registry",
@@ -2704,3 +2705,13 @@ class DropdownLookup(models.Model):
     tag = models.CharField(max_length=50)
     value = models.CharField(max_length=60)
     label = models.CharField(max_length=60)
+
+
+
+# additional models
+
+class PatientPseudonym(models.Model):
+    pseudonym = models.CharField(max_length=255, blank=True, null=True)
+    original_patient_record = models.IntegerField(null=True, blank=True)
+    patient_first_name = models.CharField(max_length=255, null=True, blank=True)
+    patient_last_name = models.CharField(max_length=255, null=True, blank=True)

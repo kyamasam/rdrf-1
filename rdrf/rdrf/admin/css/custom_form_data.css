@@ -1,0 +1,25 @@
+/* custom_form_data.css */
+.field-formatted_data pre {
+  background-color: #f8f9fa;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.field-formatted_data table {
+  font-size: 14px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.field-formatted_data th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.field-formatted_data td,
+.field-formatted_data th {
+  padding: 8px;
+  border: 1px solid #ddd;
+}

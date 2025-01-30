@@ -1,7 +1,5 @@
 <!-- start demographics form launcher -->
-{% load i18n %}
-{% load translate %}
-{% load has_feature %}
+{% load i18n %} {% load translate %} {% load has_feature %}
 <script type="text/javascript" nonce="{{csp_nonce}}">
   /*
   var USE_ACCORDION = false;
@@ -18,8 +16,8 @@
 </script>
 
 <style type="text/css" nonce="{{csp_nonce}}">
-  .card-body  {
-    word-break:break-word
+  .card-body {
+    word-break: break-word;
   }
 </style>
 
@@ -33,7 +31,6 @@
   </div>
 </div>
 
-
 {% if not consent_locked %}
 <div class="card collapsible mb-2">
   <div class="card-body">
@@ -45,9 +42,9 @@
   </div>
 </div>
 
-
 {% if clinician_form_link %}
 <div class="card collapsible mb-2">
+  clinician ctx
   <div class="card-body">
     {% if current_form_name == "Clinician" %}
     <i>{% trans 'Clinician' %}</i>
@@ -56,9 +53,7 @@
     {% endif %}
   </div>
 </div>
-{% endif %}
-
-{% if proms_link %}
+{% endif %} {% if proms_link %} proms ctx
 <div class="card collapsible mb-2">
   <div class="card-body">
     {% if current_form_name == "Proms" %}
@@ -68,10 +63,9 @@
     {% endif %}
   </div>
 </div>
-{% endif %}
-
-{% if dashboard_link %}
+{% endif %} {% if dashboard_link %}
 <div class="card collapsible mb-2">
+  dashboard ctx
   <div class="card-body">
     {% if current_form_name == "Dashboard" %}
     <i>{% trans 'Dashboard' %}</i>
@@ -80,22 +74,16 @@
     {% endif %}
   </div>
 </div>
-{% endif %}
-
-
-{% if family_linkage_link %}
+{% endif %} {% if family_linkage_link %}
 <div class="card collapsible mb-2">
+  fam linkage
   <div class="card-body">
     <a href="{{family_linkage_link}}">{% trans 'Family Linkage' %}</a>
   </div>
 </div>
-{% endif %}
-
-{% for fixed_context in fixed_contexts %}
+{% endif %} {% for fixed_context in fixed_contexts %}
 <div class="card collapsible mb-2">
-  <div class="card-header">
-    {{fixed_context.name|translate}}
-  </div>
+  <div class="card-header">{{fixed_context.name|translate}}</div>
   <div class="card-body">
     {% for form in fixed_context.forms %}
     <p>
@@ -108,51 +96,45 @@
     {% endfor %}
   </div>
 </div>
-{% endfor %}
-
-{% for multiple_context in multiple_contexts %}
+{% endfor %} {% for multiple_context in multiple_contexts %}
 <!-- START MMMMMM -->
 <div class="card collapsible mb-2">
-  <div class="card-header" data-bs-toggle="collapse" data-bs-target="#existing_{{multiple_context.id}}">
-    {{multiple_context.heading}}
-    {% if can_add_proms %}
-    <a class="btn btn-info btn-sm pull-right"
-       id="add_{{multiple_context.id}}">
-       <span class="fa fa-plus" aria-hidden="true"></span> Add</a>
+  <div
+    class="card-header"
+    data-bs-toggle="collapse"
+    data-bs-target="#existing_{{multiple_context.id}}"
+  >
+    {{multiple_context.heading}} {% if can_add_proms %}
+    <a class="btn btn-info btn-sm pull-right" id="add_{{multiple_context.id}}">
+      <span class="fa fa-plus" aria-hidden="true"></span> Add</a
+    >
     <script type="text/javascript" nonce="{{csp_nonce}}">
-      $("#add_{{multiple_context.id}}").click(function() {
-        location.href='{{multiple_context.add_link_url}}';
+      $("#add_{{multiple_context.id}}").click(function () {
+        location.href = "{{multiple_context.add_link_url}}";
       });
     </script>
     {% endif %}
   </div>
   <div id="existing_{{multiple_context.id}}" class="card-body">
-    {% for link in multiple_context.existing_links %}
-    {% if not link.current %}
+    {% for link in multiple_context.existing_links %} {% if not link.current %}
     <a href="{{link.url}}">{% trans link.text %}</a>
     {% if registry|has_feature:"form_locking" and link.locking %}
     <i class="rdrf-lockicon rdrf-form_lock_icon fas fa-lock"></i>
     {% endif %}
-    <br>
+    <br />
     {% else %}
 
     <i>{{link.text}}</i>
     {% if registry|has_feature:"form_locking" and link.locking %}
     <i class="rdrf-lockicon rdrf-form_lock_icon fas fa-lock"></i>
     {% endif %}
-    <br>
-    {% endif %}
-
-    {% endfor %}
-
+    <br />
+    {% endif %} {% endfor %}
   </div>
 </div>
 
 <!-- END MMMMMM -->
-{% endfor %}
-
-
-{% else %}
+{% endfor %} {% else %}
 <!-- consent locked -->
 <div class="card collapsible">
   <div class="card-body">
@@ -167,4 +149,3 @@
 {% endif %}
 
 <!-- end demographics form launcher -->
-

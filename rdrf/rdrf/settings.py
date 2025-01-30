@@ -92,36 +92,56 @@ LANGUAGES = tuple(zip(LANGUAGES_ASSOC_LIST[0::2], LANGUAGES_ASSOC_LIST[1::2]))
 
 DATABASES = {
     "default": {
-        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "ENGINE": env.get_db_engine("dbtype", "pgsql"),
-        # Or path to database file if using sqlite3.
-        "NAME": env.get("dbname", "rdrf"),
-        "USER": env.get("dbuser", "rdrf"),  # Not used with sqlite3.
-        "PASSWORD": env.get("dbpass", "rdrf"),  # Not used with sqlite3.
-        # Set to empty string for localhost. Not used with sqlite3.
-        "HOST": env.get("dbserver", ""),
-        # Set to empty string for default. Not used with sqlite3.
-        "PORT": env.get("dbport", ""),
+        # # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # "ENGINE": env.get_db_engine("dbtype", "pgsql"),
+        # # Or path to database file if using sqlite3.
+        # "NAME": env.get("dbname", "rdrf"),
+        # "USER": env.get("dbuser", "rdrf"),  # Not used with sqlite3.
+        # "PASSWORD": env.get("dbpass", "rdrf"),  # Not used with sqlite3.
+        # # Set to empty string for localhost. Not used with sqlite3.
+        # "HOST": env.get("dbserver", ""),
+        # # Set to empty string for default. Not used with sqlite3.
+        # "PORT": env.get("dbport", ""),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME':  'db.sqlite3',
+    
+    
+    },
+    "clinical":{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'clinical.sqlite3',
+    },   
+    "pseudonyms":{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'pseudonyms.sqlite3',
+    },   
+    "queries":{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'queries.sqlite3',
     }
 }
 
 # Clinical database (defaults to main db if not specified).
-DATABASES["clinical"] = {
-    "ENGINE": env.get_db_engine("clinical_dbtype", "pgsql"),
-    "NAME": env.get("clinical_dbname", DATABASES["default"]["NAME"]),
-    "USER": env.get("clinical_dbuser", DATABASES["default"]["USER"]),
-    "PASSWORD": env.get("clinical_dbpass", DATABASES["default"]["PASSWORD"]),
-    "HOST": env.get("clinical_dbserver", DATABASES["default"]["HOST"]),
-    "PORT": env.get("clinical_dbport", DATABASES["default"]["PORT"]),
-}
+# DATABASES["clinical"] = {
+#     # "ENGINE": env.get_db_engine("clinical_dbtype", "pgsql"),
+#     # "NAME": env.get("clinical_dbname", DATABASES["default"]["NAME"]),
+#     # "USER": env.get("clinical_dbuser", DATABASES["default"]["USER"]),
+#     # "PASSWORD": env.get("clinical_dbpass", DATABASES["default"]["PASSWORD"]),
+#     # "HOST": env.get("clinical_dbserver", DATABASES["default"]["HOST"]),
+#     # "PORT": env.get("clinical_dbport", DATABASES["default"]["PORT"]),
+#      'ENGINE': 'django.db.backends.sqlite3',
+#     'NAME': 'db.sqlite3',
+# }
 
 DATABASES["reporting"] = {
-    "ENGINE": env.get_db_engine("reporting_dbtype", "pgsql"),
-    "NAME": env.get("reporting_dbname", DATABASES["default"]["NAME"]),
-    "USER": env.get("reporting_dbuser", DATABASES["default"]["USER"]),
-    "PASSWORD": env.get("reporting_dbpass", DATABASES["default"]["PASSWORD"]),
-    "HOST": env.get("reporting_dbserver", DATABASES["default"]["HOST"]),
-    "PORT": env.get("reporting_dbport", DATABASES["default"]["PORT"]),
+    # "ENGINE": env.get_db_engine("reporting_dbtype", "pgsql"),
+    # "NAME": env.get("reporting_dbname", DATABASES["default"]["NAME"]),
+    # "USER": env.get("reporting_dbuser", DATABASES["default"]["USER"]),
+    # "PASSWORD": env.get("reporting_dbpass", DATABASES["default"]["PASSWORD"]),
+    # "HOST": env.get("reporting_dbserver", DATABASES["default"]["HOST"]),
+    # "PORT": env.get("reporting_dbport", DATABASES["default"]["PORT"]),
+     'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'reporting.sqlite3',
 }
 
 DATABASE_ROUTERS = ["rdrf.db.db.RegistryRouter"]
@@ -242,6 +262,7 @@ INSTALLED_APPS = [
     "two_factor",
     "django_user_agents",
     "formtools",
+    "django_jsonform"
 ]
 
 IS_WORKER = env.get("is_worker", 0)
@@ -526,13 +547,14 @@ DB_FILES = {
     "size_column": "size",
     "base_url": None,
 }
-DATABASE_ODBC_DRIVER = "{PostgreSQL}"  # depends on odbcinst.ini
-DATABASE_NAME = DATABASES["default"]["NAME"]
-DATABASE_USER = DATABASES["default"]["USER"]
-DATABASE_PASSWORD = DATABASES["default"]["PASSWORD"]
-DATABASE_HOST = DATABASES["default"]["HOST"]
+# DATABASE_ODBC_DRIVER = "{PostgreSQL}"  # depends on odbcinst.ini
+# DATABASE_NAME = DATABASES["default"]["NAME"]
+# DATABASE_USER = DATABASES["default"]["USER"]
+# DATABASE_PASSWORD = DATABASES["default"]["PASSWORD"]
+# DATABASE_HOST = DATABASES["default"]["HOST"]
 
 # session and cookies
+FORMIO_URL = env.get("FORMIO_URL", "http://localhost:3001")
 SESSION_COOKIE_AGE = env.get("session_cookie_age", 60 * 60)
 SESSION_COOKIE_PATH = "{0}/".format(SCRIPT_NAME)
 SESSION_SAVE_EVERY_REQUEST = env.get("session_save_every_request", True)
@@ -568,14 +590,14 @@ LOGIN_FAILURE_LIMIT = env.get("login_failure_limit", 3)
 
 # APPLICATION SPECIFIC SETTINGS
 AUTH_PROFILE_MODULE = "groups.User"
-ALLOWED_HOSTS = env.getlist("allowed_hosts", ["localhost"])
+ALLOWED_HOSTS = env.getlist("allowed_hosts", ["localhost", "127.0.0.1"])
 
 # This honours the X-Forwarded-Host header set by our nginx frontend when
 # constructing redirect URLS.
 # see: https://docs.djangoproject.com/en/1.4/ref/settings/#use-x-forwarded-host
 USE_X_FORWARDED_HOST = env.get("use_x_forwarded_host", True)
 
-CACHE_DISABLED = False
+CACHE_DISABLED = True
 if env.get("memcache", ""):
     backend = "django.core.cache.backends.memcached.MemcachedCache"
     location = env.getlist("memcache")
@@ -597,12 +619,17 @@ else:
             "LOCATION": "rdrf_cache",
             "TIMEOUT": 3600,
             "MAX_ENTRIES": 600,
+        },
+        "queries": {  # Add this section
+            "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+            "LOCATION": "rdrf_queries_cache",  # Different table for queries
+            "TIMEOUT": 3600,
+            "MAX_ENTRIES": 600,
         }
     }
 
     SESSION_ENGINE = "django.contrib.sessions.backends.file"
     SESSION_FILE_PATH = WRITABLE_DIRECTORY
-
 # #
 # # LOGGING
 # #

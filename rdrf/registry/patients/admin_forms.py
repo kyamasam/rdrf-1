@@ -1,3 +1,4 @@
+from email.policy import default
 import logging
 import pycountry
 from django import forms
@@ -123,11 +124,11 @@ class PatientRelativeForm(forms.ModelForm):
 class PatientAddressForm(forms.ModelForm):
     class Meta:
         model = PatientAddress
-        fields = ('address_type', 'address', 'country', 'state', 'suburb', 'postcode')
+        fields = ('country', 'state')
 
     country = forms.ChoiceField(required=True, widget=CountryWidget())
     state = forms.ChoiceField(required=True, widget=StateWidget())
-    address = forms.CharField(widget=forms.Textarea(attrs={'rows': 5}))
+    # address = forms.CharField(widget=forms.Textarea(attrs={'rows': 5}))
 
     def clean_state(self):
         if "state" in self.cleaned_data:
@@ -166,8 +167,8 @@ class PatientForm(forms.ModelForm):
         "cols": 30,
     }
 
-    next_of_kin_country = forms.ChoiceField(required=False, widget=CountryWidget())
-    next_of_kin_state = forms.ChoiceField(required=False, widget=StateWidget())
+    next_of_kin_country = forms.ChoiceField(label="Country",required=False, widget=CountryWidget())
+    next_of_kin_state = forms.ChoiceField(label="County",required=False, widget=StateWidget())
     country_of_birth = forms.ChoiceField(required=False, widget=CountryWidget())
     cic_id = forms.CharField(required=False, widget=forms.HiddenInput())
 

@@ -2,6 +2,8 @@ from django.utils.html import format_html
 from django.utils.translation import ugettext as _
 from django.contrib import admin
 from django.urls import reverse
+from rdrf.customFormDataAdmin import CustomFormDataAdmin
+from rdrf.models.custom_forms.models import CustomFormData
 from rdrf.models.definition.models import Registry
 from rdrf.models.definition.models import RegistryForm
 from rdrf.models.definition.models import QuestionnaireResponse
@@ -88,13 +90,16 @@ class SectionAdmin(admin.ModelAdmin):
             return True
         return False
 
+    def get_queryset(self, request, *args, **kwargs):
+        return super().get_queryset(request,  *args, **kwargs).filter(is_custom_form=True)
+
 
 class RegistryFormAdmin(admin.ModelAdmin):
     list_display = ("registry", "name", "is_questionnaire", "position")
     ordering = ["registry", "name"]
     form = RegistryFormAdminForm
 
-    list_filter = ["registry"]
+    list_filter = ["registry","is_questionnaire"]
 
     def has_add_permission(self, request, *args, **kwargs):
         if request.user.is_superuser:
@@ -452,6 +457,7 @@ class SurveyAdmin(admin.ModelAdmin):
     inlines = [SurveyQuestionAdmin]
 
 
+
 class SurveyRequestAdmin(admin.ModelAdmin):
     model = SurveyRequest
     list_display = (
@@ -582,7 +588,6 @@ class CustomActionExecutionAdmin(admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         return [field.name for field in obj.__class__._meta.fields]
 
-
 class RegistryYamlAdmin(admin.ModelAdmin):
     list_display = (
         "code",
@@ -643,9 +648,15 @@ PROMS_ADMIN_OTHER_COMPONENTS = [
 ]
 
 NORMAL_MODE_ADMIN_COMPONENTS = [
+    (Section, SectionAdmin),
     (Registry, RegistryAdmin),
+    (RegistryForm, RegistryFormAdmin),
+
     (QuestionnaireResponse, QuestionnaireResponseAdmin),
     (Precondition, PreconditionAdmin),
+    (CustomFormData, CustomFormDataAdmin),
+        (CommonDataElement, CommonDataElementAdmin),
+
     (EmailNotification, EmailNotificationAdmin),
     (EmailTemplate, EmailTemplateAdmin),
     (EmailNotificationHistory, EmailNotificationHistoryAdmin),
@@ -690,3 +701,6 @@ if settings.SYSTEM_ROLE == SystemRoles.CIC_CLINICAL:
 for model_class, model_admin in ADMIN_COMPONENTS:
     if not admin.site.is_registered(model_class):
         admin.site.register(model_class, model_admin)
+
+
+

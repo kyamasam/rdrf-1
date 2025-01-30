@@ -4,8 +4,10 @@ from django.conf import settings
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 from django.utils.translation import ugettext_lazy as _
+from rdrf.admin import SectionAdmin
 from rdrf.system_role import SystemRoles
 from registry.groups import GROUPS as RDRF_GROUPS
+from registry.patients.models import PatientCustomForm
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +33,10 @@ class Links:
         SystemRoles.CIC_DEV,
         SystemRoles.CIC_CLINICAL,
     ):
+        print("***************we are in the first if statement")
+        Sections = QuickLink(
+            reverse("admin:rdrf_section_changelist"), _("Registry Sections")
+        )
         HL7Mappings = QuickLink(
             reverse("admin:intframework_hl7mapping_changelist"), _("HL7 Mappings")
         )
@@ -40,7 +46,15 @@ class Links:
         HL7MessageConfigs = QuickLink(
             reverse("admin:intframework_hl7messageconfig_changelist"),
             _("HL7 Message Config"),
+        )    
+        HL7MessageConfigs2 = QuickLink(
+            reverse("admin:intframework_hl7messageconfig_changelist"),
+            _("HL7 Message Config"),
         )
+        # PatientAdditionalForms = QuickLink(
+        #     reverse("admin:your_app_name_patientadditionalform_changelist"),
+        #     _("Patient Additional Forms")
+        # )
         PatientsListing = QuickLink(reverse("patientslisting"), _("Patient List"))
 
         PatientsDashboard = QuickLink(
@@ -51,6 +65,17 @@ class Links:
             _("Questionnaire Responses"),
         )
         Doctors = QuickLink(reverse("admin:patients_doctor_changelist"), _("Doctors"))
+        Hospitals = QuickLink(reverse("admin:patients_hospital_changelist"), _("Hospitals"))
+        from rdrf.models.custom_forms.models import CustomFormData as CustomFormDataModel
+        unique_form_codes = CustomFormDataModel.objects.values_list('form_code', flat=True).distinct()
+        form_quicklinks = []
+        form_quicklinks = {
+            f"Form: {form_code}": QuickLink(
+                f"{reverse('admin:rdrf_customformdata_changelist')}?form_code={form_code}", 
+                _(f"Form: {''.join(' ' + char if char.isupper() else char for char in form_code).strip().title()}")
+            ) for form_code in unique_form_codes
+        }
+        # CustomFormData = QuickLink(reverse("admin:rdrf_customformdata_changelist"), _("Custom Form Data"))
         ArchivedPatients = QuickLink(
             reverse("admin:patients_archivedpatient_changelist"), _("Archived Patients")
         )
@@ -124,7 +149,19 @@ class Links:
         DemographicsFields = QuickLink(
             reverse("admin:rdrf_demographicfields_changelist"),
             _("Registry Demographics Fields"),
+        )    
+        Doctors = QuickLink(reverse("admin:patients_doctor_changelist"), _("Doctors"))
+
+        RegistryFormAdminForms = QuickLink(
+            reverse("admin:rdrf_registryform_changelist"),
+            _("Registry Forms"),
         )
+        RegistryAdminForms = QuickLink(
+            reverse("admin:rdrf_registry_changelist"),
+            _("Registry "),
+        )
+
+
         ConsentRules = QuickLink(
             reverse("admin:rdrf_consentrule_changelist"), _("Consent Rules")
         )
@@ -179,7 +216,7 @@ class Links:
             reverse("admin:rdrf_registryform_changelist"), _("Registry Forms")
         )
         Sections = QuickLink(
-            reverse("admin:rdrf_section_changelist"), _("Registry Sections")
+            reverse("admin:rdrf_section_changelist"), _("Registry Form Sections")
         )
         DataElements = QuickLink(
             reverse("admin:rdrf_commondataelement_changelist"),
@@ -224,7 +261,9 @@ class Links:
             HL7Mappings.text: HL7Mappings,
             HL7Messages.text: HL7Messages,
             HL7MessageConfigs.text: HL7MessageConfigs,
+            HL7MessageConfigs2.text: HL7MessageConfigs2,
         }
+        
         AUDITING = {
             LoginLog.text: LoginLog,
             FailedLoginLog.text: FailedLoginLog,
@@ -253,11 +292,13 @@ class Links:
                 Sites.text: Sites,
                 Groups.text: Groups,
                 Importer.text: Importer,
+                Sections.text: Sections,
                 DemographicsFields.text: DemographicsFields,
                 NextOfKinRelationship.text: NextOfKinRelationship,
                 ArchivedPatients.text: ArchivedPatients,
                 ConsentRules.text: ConsentRules,
                 Reviews.text: Reviews,
+                Hospitals.text: Hospitals,
                 PatientReviews.text: PatientReviews,
                 Verifications.text: Verifications,
                 Custom_Actions.text: Custom_Actions,
@@ -265,24 +306,32 @@ class Links:
                 Dropdown_Lookups.text: Dropdown_Lookups,
                 VisualisationConfigs.text: VisualisationConfigs,
                 VisualisationBaseDataConfigs.text: VisualisationBaseDataConfigs,
+                **form_quicklinks
+
             }
         else:
             OTHER = {
-                Sites.text: Sites,
+                # Sites.text: Sites,
                 Groups.text: Groups,
                 DemographicsFields.text: DemographicsFields,
-                Importer.text: Importer,
+                RegistryFormAdminForms.text: RegistryFormAdminForms,
+                Sections.text: Sections,
+                RegistryAdminForms.text: RegistryAdminForms,
+
+                # Importer.text: Importer,
                 NextOfKinRelationship.text: NextOfKinRelationship,
                 ArchivedPatients.text: ArchivedPatients,
+                Hospitals.text: Hospitals,
                 ConsentRules.text: ConsentRules,
-                Reviews.text: Reviews,
-                PatientReviews.text: PatientReviews,
-                Verifications.text: Verifications,
-                VisualisationConfigs.text: VisualisationConfigs,
-                VisualisationBaseDataConfigs.text: VisualisationBaseDataConfigs,
-                Custom_Actions.text: Custom_Actions,
-                Custom_Action_Executions.text: Custom_Action_Executions,
+                # Reviews.text: Reviews,
+                # PatientReviews.text: PatientReviews,
+                # Verifications.text: Verifications,
+                # VisualisationConfigs.text: VisualisationConfigs,
+                # VisualisationBaseDataConfigs.text: VisualisationBaseDataConfigs,
+                # Custom_Actions.text: Custom_Actions,
+                # Custom_Action_Executions.text: Custom_Action_Executions,
                 Dropdown_Lookups.text: Dropdown_Lookups,
+                **form_quicklinks
             }
         if settings.SYSTEM_ROLE == SystemRoles.NORMAL:
             EXPLORER = {
@@ -415,18 +464,16 @@ class QuickLinks(object):
                 **Links.CONSENT,
                 **Links.DATA_ENTRY,
                 **Links.DOCTORS,
-                **Links.EMAIL,
-                **Links.FAMILY_LINKAGE,
-                **Links.GENETIC,
-                **Links.IP_RESTRICT,
+                # **Links.EMAIL,
+                # **Links.FAMILY_LINKAGE,
+                # **Links.IP_RESTRICT,
                 **Links.OTHER,
                 **Links.PERMISSIONS,
-                **Links.QUESTIONNAIRE,
+                # **Links.QUESTIONNAIRE,
                 **Links.REGISTRATION,
                 **Links.STATE_MANAGEMENT,
                 **Links.USER_MANAGEMENT,
                 **Links.WORKING_GROUPS,
-                **Links.HL7_LINKS,
             }
 
             if settings.SYSTEM_ROLE == SystemRoles.NORMAL:

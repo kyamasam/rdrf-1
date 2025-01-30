@@ -18,8 +18,11 @@ from .admin_forms import (
 from .models import (
     AddressType,
     ClinicianOther,
+    FormBuilder,
+    Hospital,
     ParentGuardian,
     Doctor,
+    PatientCustomForm,
     State,
     Patient,
     PatientAddress,
@@ -48,6 +51,11 @@ class PatientDoctorAdmin(admin.TabularInline):
     model = PatientDoctor
     extra = 0
 
+@admin.register(PatientCustomForm)
+class PatientCustomFormAdmin(admin.ModelAdmin):
+    model = PatientCustomForm
+
+
 
 class PatientRelativeAdmin(admin.TabularInline):
     model = PatientRelative
@@ -55,6 +63,10 @@ class PatientRelativeAdmin(admin.TabularInline):
     fk_name = 'patient'
     extra = 1
 
+
+@admin.register(Hospital)
+class HospitalAdmin(admin.ModelAdmin):
+    model = Hospital
 
 class PatientConsentAdmin(admin.TabularInline):
     model = PatientConsent

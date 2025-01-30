@@ -1,81 +1,83 @@
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
-    background-color: #F8F8F8;
-    margin-bottom: 80px;
-    margin-top: 60px;
+  background-color: #f8f8f8;
+  margin-bottom: 80px;
+  margin-top: 60px;
 }
 
-a, a:hover, a:visited {
-    text-decoration: none;
+a,
+a:hover,
+a:visited {
+  text-decoration: none;
 }
 
 a:hover {
-    color: #000000;
+  color: #000000;
 }
 
 .next-form {
-    position: fixed;
-    width: 2%;
-    top: 50%;
-    right: 0;
-    font-size: 2em;
-    margin-right: 10px;
-    z-index: 99;
+  position: fixed;
+  width: 2%;
+  top: 50%;
+  right: 0;
+  font-size: 2em;
+  margin-right: 10px;
+  z-index: 99;
 }
 
 .previous-form {
-    position: fixed;
-    width: 2%;
-    top: 50%;
-    left: 0;
-    margin-left: 10px;
-    font-size: 2em;
-    z-index: 99;
+  position: fixed;
+  width: 2%;
+  top: 50%;
+  left: 0;
+  margin-left: 10px;
+  font-size: 2em;
+  z-index: 99;
 }
 
 .location-navbar {
-    top: 51px;
-    z-index: 999;
+  top: 51px;
+  z-index: 999;
 }
 
 .footer-wrap {
-    border-top: 5px solid #e1e3e5;;
-    height: 60px;
-    position: fixed;
-    width: 100%;
-    z-index: 99;
-    background-color: #eeeeee;
-    padding-bottom: 20px;
-    bottom: 0px;
-    box-shadow: 0 0px 5px #888888;
-    -moz-box-shadow: 0 0px 5px #888888;
-    -webkit-box-shadow: 0 0px 5px #888888;
+  border-top: 5px solid #e1e3e5;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  background-color: #eeeeee;
+  padding-bottom: 20px;
+  bottom: 0px;
+  box-shadow: 0 0px 5px #888888;
+  -moz-box-shadow: 0 0px 5px #888888;
+  -webkit-box-shadow: 0 0px 5px #888888;
 }
 
 .footer-wrap .version {
-    text-align: left;
-    padding: 20px 0px 0px 20px;
-    font-size: 0.8em;
+  text-align: left;
+  padding: 20px 0px 0px 20px;
+  font-size: 0.8em;
 }
 
 .footer-wrap .disclaimer {
-    text-align: center;
-    padding: 10px 0px 0px 0px;
-    font-size: 0.8em;
+  text-align: center;
+  padding: 10px 0px 0px 0px;
+  font-size: 0.8em;
 }
 
 .footer-wrap .authorised {
-    text-align: right;
-    padding: 10px 30px 0px 0px;
-    font-size: 0.8em;
+  text-align: right;
+  padding: 10px 30px 0px 0px;
+  font-size: 0.8em;
 }
 
 .navbar-nav-scroll {
-    --bs-scroll-height: 100px;
+  --bs-scroll-height: 100px;
 }
 
 /**************************************************************************
@@ -103,7 +105,8 @@ input.cde-value-updated {
 /**************************************************************************
  * Admin site validation                                                  */
 
-.errornote, .errorlist {
+.errornote,
+.errorlist {
   display: block;
   padding: 15px;
   margin-bottom: 20px;
@@ -126,7 +129,8 @@ form .aligned ul.errorlist {
 /**************************************************************************
  * Multifile CDEs                                                         */
 
-.multi-file-deleted, .multi-file-deleted:hover {
+.multi-file-deleted,
+.multi-file-deleted:hover {
   text-decoration: line-through;
   color: #333;
 }
@@ -147,167 +151,191 @@ form .aligned ul.errorlist {
  * Project Title and Logo                                                 */
 
 .project_title {
-    padding-left: 31px;
+  padding-left: 31px;
 }
 
 .project_logo {
-    height: 60px;
-    width: Auto;
-    position: relative;
-    float: left;
+  height: 60px;
+  width: Auto;
+  position: relative;
+  float: left;
 }
 
 .section_blacklist_hidden {
-    display: none;
+  display: none;
 }
 
 .section_hidden {
-    display: none;
+  display: none;
 }
 
 /***************************************************************************
 * proms logo, survey name & preamble text                              */
 
 .promsheader {
-    position: relative;
-    width: auto;
-    max-width: 1150px;
-    height: 60px;
-    margin: 0 auto 20px auto;
-    overflow: hidden;
+  position: relative;
+  width: auto;
+  max-width: 1150px;
+  height: 60px;
+  margin: 0 auto 20px auto;
+  overflow: hidden;
 }
 .promslogo {
-    position: absolute;
-    left: 0;
-    width: Auto;
-    height: 60px;
+  position: absolute;
+  left: 0;
+  width: Auto;
+  height: 60px;
 }
 
 .promstitle {
-    right:0; 
-    font-family: 'Century Gothic', Helvetica, sans-serif; 
-    font-size: 20px; 
-    font-weight: bold;
-    margin: 0;
-    color: green;
-    line-height: 60px;
+  right: 0;
+  font-family: "Century Gothic", Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: green;
+  line-height: 60px;
 }
 
 .preambletext {
-    text-align: justify;
-    text-justify: inter-word;
-    font-size: 15px;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 15px;
 }
 
 .submit {
-    text-align:center;
-    margin-top:20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .copyright {
-    border-radius: 10px;
-    width: 80%;
-    border: 2px solid grey;
-    padding: 25px;
-    margin: 25px;
+  border-radius: 10px;
+  width: 80%;
+  border: 2px solid grey;
+  padding: 25px;
+  margin: 25px;
 }
 
 .registry_copyright {
-    border-radius: 10px;
-    width: 80%;
-    border: 2px solid burlywood;
-    padding: 25px;
-    margin: 25px;
+  border-radius: 10px;
+  width: 80%;
+  border: 2px solid burlywood;
+  padding: 25px;
+  margin: 25px;
 }
 
 /***************************************************************************
 * CDE forms                              */
 .rdrf-cde-abnormal a {
-    color: #ff5700;
-    font-weight: bolder;
-    font-family: sans-serif;
+  color: #ff5700;
+  font-weight: bolder;
+  font-family: sans-serif;
 }
 .rdrf-cde-abnormal .text-muted {
-    color: #ff5700;
+  color: #ff5700;
 }
 .rdrf-cde-abnormal input {
-    border: 3px solid #ff5700;
-    color: #ff5700;
+  border: 3px solid #ff5700;
+  color: #ff5700;
 }
 .rdrf-cde-abnormal label.col-form-label.fa.fa-exclamation-triangle:before {
-    content: "\f071";
-    color: #ff5700;
+  content: "\f071";
+  color: #ff5700;
 }
 
 .rdrf-lockicon {
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: inherit;
-    -webkit-font-smoothing: antialiased;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
 }
 
 .rdrf-lockiconbutton {
-    color: white;
+  color: white;
 }
 
 .rdrf-form_lock_icon {
-    color: #9d9d9d;
-    margin-left: 7px;
+  color: #9d9d9d;
+  margin-left: 7px;
 }
 
 .rdrf-content {
-    padding-top: 110px;
+  padding-top: 110px;
 }
 
 .dashboard-container {
-    width: 100%;
-    padding-top: 30px;
+  width: 100%;
+  padding-top: 30px;
 }
 
 .sidebar-bg {
-    background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .verification-status {
-    width: 110px !important;
+  width: 110px !important;
 }
 
 .btn-close {
-    background-image: url("../icons/bootstrap/x-square.svg");
-    background-size: 24px 24px;
+  background-image: url("../icons/bootstrap/x-square.svg");
+  background-size: 24px 24px;
 }
 
 .form-select {
-    background-image: url("../icons/bootstrap/chevron-down.svg");
-    background-size: 16px 16px;
+  background-image: url("../icons/bootstrap/chevron-down.svg");
+  background-size: 16px 16px;
 }
 
-.form-control.is-valid, .was-validated .form-control:valid {
-    background-image: url("../icons/bootstrap/green-tick.svg");
-    background-size: 16px 16px;
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-image: url("../icons/bootstrap/green-tick.svg");
+  background-size: 16px 16px;
 }
-.form-control.is-invalid, .was-validated .form-control:invalid {
-    background-image: url("../icons/bootstrap/red-exclamation.svg");
-    background-size: 16px 16px;
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  background-image: url("../icons/bootstrap/red-exclamation.svg");
+  background-size: 16px 16px;
 }
 
-.form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"], .was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"] {
-    background-image: url("../icons/bootstrap/green-tick.svg");
-    background-size: 16px 16px;
+.form-select.is-valid:not([multiple]):not([size]),
+.form-select.is-valid:not([multiple])[size="1"],
+.was-validated .form-select:valid:not([multiple]):not([size]),
+.was-validated .form-select:valid:not([multiple])[size="1"] {
+  background-image: url("../icons/bootstrap/green-tick.svg");
+  background-size: 16px 16px;
 }
-.form-select.is-invalid:not([multiple]):not([size]), .form-select.is-invalid:not([multiple])[size="1"], .was-validated .form-select:invalid:not([multiple]):not([size]), .was-validated .form-select:invalid:not([multiple])[size="1"] {
-    background-image: url("../icons/bootstrap/red-exclamation.svg");
-    background-size: 16px 16px;
+.form-select.is-invalid:not([multiple]):not([size]),
+.form-select.is-invalid:not([multiple])[size="1"],
+.was-validated .form-select:invalid:not([multiple]):not([size]),
+.was-validated .form-select:invalid:not([multiple])[size="1"] {
+  background-image: url("../icons/bootstrap/red-exclamation.svg");
+  background-size: 16px 16px;
 }
-     
+
 .externalfield {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 
 .calcfield {
-    color: black;
-    font-weight: bold;
+  color: black;
+  font-weight: bold;
 }
 
+/*
+custom styles
+*/
+
+.navbar.navbar-expand-lg.navbar-dark {
+  background-color: #00b0aa !important;
+}
+
+.progress-bar {
+  background-color: #00b0aa !important;
+}
+.btn-success {
+  color: #fff;
+  background-color: #00b0aa;
+  border-color: #00b0aa;
+}

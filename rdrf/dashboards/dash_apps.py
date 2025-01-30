@@ -25,12 +25,12 @@ all_app = DjangoDash(
 )
 
 
+
+
 try:
-    registry = Registry.objects.get()
-except Registry.DoesNotExist:
-    load = False
-except Registry.MultipleObjectsReturned:
-    load = False
+    registry = Registry.objects.all().first()
+    if registry is None:
+        load = False
 except ProgrammingError:
     # this occurs in the migration check ?
     load = False

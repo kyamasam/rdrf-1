@@ -1,8 +1,23 @@
 import logging
 
 logger = logging.getLogger(__name__)
-
-
+def rpc_get_form_codes(request):
+    """
+    Get all unique form codes for the custom forms
+    """
+    from rdrf.models.custom_forms.models import CustomFormData
+    try:
+        unique_forms = CustomFormData.objects.values_list('form_code', flat=True).distinct()
+        return {
+            "status": "success",
+            "result": [{"code": code} for code in unique_forms if code]
+        }
+    except Exception as ex:
+        logger.exception("Error getting form codes")
+        return {
+            "status": "fail",
+            "error": str(ex)
+        }
 def rpc_visibility(request, element):
     user = request.user
     if user.can("see", element):
@@ -364,3 +379,5 @@ def rpc_check_verification(
     )
 
     return {"status": "success", "verified": is_verified}
+
+

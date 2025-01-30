@@ -1,0 +1,997 @@
+{
+  "label": "Tabs",
+  "components": [
+    {
+      "label": "Clinical Information",
+      "key": "clinicalInformation",
+      "components": [
+        {
+          "label": "Current Medications",
+          "key": "currentMedications",
+          "type": "textarea",
+          "tooltip": "List current medications for diabetes",
+          "input": true,
+          "tableView": true
+        },
+        {
+          "label": "Other Medical Conditions",
+          "key": "otherMedicalConditions",
+          "type": "textarea",
+          "tooltip": "List current medications for diseases other than diabetes",
+          "input": true,
+          "tableView": true
+        },
+        {
+          "label": "Type 2 Diabetes Information",
+          "type": "panel",
+          "key": "diabetesInfo",
+          "components": [
+            {
+              "label": "Diagnosis Date",
+              "key": "diagnosisDate",
+              "type": "datetime",
+              "format": "yyyy-MM hh:mm a",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Diabetes-Related Complications",
+          "type": "panel",
+          "key": "diabetesComplications",
+          "components": [
+            {
+              "label": "Diabetic Retinopathy/Nephropathy/Neuropathy",
+              "key": "retinopathyNephropathyNeuropathy",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Foot Ulcer",
+              "key": "footUlcer",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetes-related Amputations",
+              "key": "amputations",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Coma",
+              "key": "diabeticComa",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Ketoacidosis",
+              "key": "ketoacidosis",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Cardiomyopathy",
+              "key": "cardiomyopathy",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Cardiovascular Conditions",
+          "type": "panel",
+          "key": "cardiovascularConditions",
+          "components": [
+            {
+              "label": "Atrial Fibrillation",
+              "key": "atrialFibrillation",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Congestive Heart Failure",
+              "key": "chf",
+              "type": "textfield",
+              "suffix": "ejection fraction %",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Acute Coronary Syndrome/MI History",
+              "key": "acsHistory",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "CABG History",
+              "key": "cabgHistory",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "PCI History",
+              "key": "pciHistory",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Angina Frequency",
+              "key": "anginaFrequency",
+              "type": "select",
+              "data": {
+                "values": [
+                  {
+                    "label": "Daily",
+                    "value": "daily"
+                  },
+                  {
+                    "label": "Weekly",
+                    "value": "weekly"
+                  },
+                  {
+                    "label": "Monthly",
+                    "value": "monthly"
+                  },
+                  {
+                    "label": "None",
+                    "value": "none"
+                  }
+                ]
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Other Medical Conditions",
+          "type": "panel",
+          "key": "otherConditions",
+          "components": [
+            {
+              "label": "Pancreatitis",
+              "key": "pancreatitis",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Gallstones/Biliary Tract Disease",
+              "key": "biliaryConditions",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Hypertriglyceridemia",
+              "key": "hypertriglyceridemia",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Hypertension",
+              "key": "hypertension",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Dyslipidemia",
+              "key": "dyslipidemia",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Vascular Conditions",
+          "type": "panel",
+          "key": "vascularConditions",
+          "components": [
+            {
+              "label": "Peripheral Vascular Disease",
+              "key": "pvd",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Intermittent Claudication",
+              "key": "claudication",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Revascularization Procedure",
+              "key": "revascularization",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Neurological Conditions",
+          "type": "panel",
+          "key": "neurologicalConditions",
+          "components": [
+            {
+              "label": "Cerebrovascular Accident",
+              "key": "cva",
+              "type": "radio",
+              "values": [
+                {
+                  "label": "Ischemic",
+                  "value": "ischemic"
+                },
+                {
+                  "label": "Hemorrhagic",
+                  "value": "hemorrhagic"
+                },
+                {
+                  "label": "None",
+                  "value": "none"
+                }
+              ],
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Transient Ischemic Attack",
+              "key": "tia",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Other Conditions",
+          "type": "panel",
+          "key": "additionalConditions",
+          "components": [
+            {
+              "label": "Chronic Renal Disease",
+              "key": "renalDisease",
+              "type": "textfield",
+              "suffix": "stage",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Liver Disease",
+              "key": "liverDisease",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Peptic Ulcer Disease",
+              "key": "pepticUlcer",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Rheumatologic Disease",
+              "key": "rheumatologicDisease",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Malignancy Information",
+          "type": "panel",
+          "key": "malignancyInfo",
+          "components": [
+            {
+              "label": "Malignancy Type",
+              "key": "malignancyType",
+              "type": "textarea",
+              "rows": 2,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Diagnosis Date",
+              "key": "malignancyDiagnosisDate",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Diagnostic Tests",
+      "key": "diagnosticTests",
+      "components": [
+        {
+          "label": "Liver Function Tests",
+          "type": "fieldset",
+          "key": "diagnosticLiverFunctionTests",
+          "components": [
+            {
+              "label": "Alanine Aminotransferase (ALT)",
+              "key": "diagnosticAlt",
+              "type": "number",
+              "suffix": "U/L",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Aspartate Aminotransferase (AST)",
+              "key": "diagnosticAst",
+              "type": "number",
+              "suffix": "U/L",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Glucose Measurements",
+          "type": "fieldset",
+          "key": "diagnosticGlucoseMeasurements",
+          "components": [
+            {
+              "label": "Blood Glucose",
+              "key": "diagnosticBloodGlucose",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Value",
+                  "key": "diagnosticBloodGlucoseValue",
+                  "type": "number",
+                  "suffix": "mg/dL",
+                  "validate": {
+                    "min": 0
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Fasting Status",
+                  "key": "diagnosticBloodGlucoseFastingStatus",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Fasting",
+                        "value": "fasting"
+                      },
+                      {
+                        "label": "Non-fasting",
+                        "value": "nonFasting"
+                      },
+                      {
+                        "label": "Unknown",
+                        "value": "unknown"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Oral Glucose Tolerance Test",
+              "key": "diagnosticOgtt",
+              "type": "number",
+              "suffix": "mg/dL",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "2-Hour Postprandial Plasma Glucose",
+              "key": "diagnosticPostprandialGlucose",
+              "type": "number",
+              "suffix": "mg/dL",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "HbA1c",
+              "key": "diagnosticHba1c",
+              "type": "number",
+              "suffix": "%",
+              "validate": {
+                "min": 0,
+                "max": 20
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Inflammatory Markers",
+          "type": "fieldset",
+          "key": "diagnosticInflammatoryMarkers",
+          "components": [
+            {
+              "label": "C-Reactive Protein",
+              "key": "diagnosticCrp",
+              "type": "number",
+              "suffix": "mg/L",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Kidney Function Tests",
+          "type": "fieldset",
+          "key": "diagnosticKidneyFunctionTests",
+          "components": [
+            {
+              "label": "Albumin",
+              "key": "diagnosticAlbumin",
+              "type": "number",
+              "suffix": "g/dL",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Blood Urea Nitrogen",
+              "key": "diagnosticBun",
+              "type": "number",
+              "suffix": "mg/dL",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Serum Creatinine",
+              "key": "diagnosticSerumCreatinine",
+              "type": "number",
+              "suffix": "mg/dL",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Estimated Glomerular Filtration Rate",
+              "key": "diagnosticEgfr",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Value",
+                  "key": "diagnosticEgfrValue",
+                  "type": "number",
+                  "suffix": "mL/min/1.73m²",
+                  "validate": {
+                    "min": 0
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Calculation Method",
+                  "key": "diagnosticEgfrCalculationMethod",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "CKD-EPI",
+                        "value": "ckdEpi"
+                      },
+                      {
+                        "label": "MDRD",
+                        "value": "mdrd"
+                      },
+                      {
+                        "label": "Cockcroft-Gault",
+                        "value": "cockcroftGault"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Creatinine Clearance",
+              "key": "diagnosticCreatinineClearance",
+              "type": "number",
+              "suffix": "mL/min",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Urinalysis",
+          "type": "fieldset",
+          "key": "diagnosticUrinalysis",
+          "components": [
+            {
+              "label": "Urine Protein",
+              "key": "diagnosticUrineProtein",
+              "type": "number",
+              "suffix": "mg/24h",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Urine Microalbumin",
+              "key": "diagnosticUrineMicroalbumin",
+              "type": "number",
+              "suffix": "mg/L",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Urine Microalbumin/Creatinine Ratio",
+              "key": "diagnosticUrineMicroalbuminCreatinineRatio",
+              "type": "number",
+              "suffix": "mg/g",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Lipid Panel",
+          "type": "fieldset",
+          "key": "diagnosticLipidPanel",
+          "components": [
+            {
+              "label": "Total Cholesterol",
+              "key": "diagnosticTotalCholesterol",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Value",
+                  "key": "diagnosticTotalCholesterolValue",
+                  "type": "number",
+                  "suffix": "mg/dL",
+                  "validate": {
+                    "min": 0
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Fasting Status",
+                  "key": "diagnosticTotalCholesterolFastingStatus",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Fasting",
+                        "value": "fasting"
+                      },
+                      {
+                        "label": "Non-fasting",
+                        "value": "nonFasting"
+                      },
+                      {
+                        "label": "Unknown",
+                        "value": "unknown"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Triglycerides",
+              "key": "diagnosticTriglycerides",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Value",
+                  "key": "diagnosticTriglyceridesValue",
+                  "type": "number",
+                  "suffix": "mg/dL",
+                  "validate": {
+                    "min": 0
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Fasting Status",
+                  "key": "diagnosticTriglycerideFastingStatus",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Fasting",
+                        "value": "fasting"
+                      },
+                      {
+                        "label": "Non-fasting",
+                        "value": "nonFasting"
+                      },
+                      {
+                        "label": "Unknown",
+                        "value": "unknown"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "LDL Cholesterol",
+              "key": "diagnosticLdlCholesterol",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Value",
+                  "key": "diagnosticLdlCholesterolValue",
+                  "type": "number",
+                  "suffix": "mg/dL",
+                  "validate": {
+                    "min": 0
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Fasting Status",
+                  "key": "diagnosticLdlCholesterolFastingStatus",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Fasting",
+                        "value": "fasting"
+                      },
+                      {
+                        "label": "Non-fasting",
+                        "value": "nonFasting"
+                      },
+                      {
+                        "label": "Unknown",
+                        "value": "unknown"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "HDL Cholesterol",
+              "key": "diagnosticHdlCholesterol",
+              "type": "container",
+              "components": [
+                {
+                  "label": "Value",
+                  "key": "diagnosticHdlCholesterolValue",
+                  "type": "number",
+                  "suffix": "mg/dL",
+                  "validate": {
+                    "min": 0
+                  },
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "label": "Fasting Status",
+                  "key": "diagnosticHdlCholesterolFastingStatus",
+                  "type": "select",
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Fasting",
+                        "value": "fasting"
+                      },
+                      {
+                        "label": "Non-fasting",
+                        "value": "nonFasting"
+                      },
+                      {
+                        "label": "Unknown",
+                        "value": "unknown"
+                      }
+                    ]
+                  },
+                  "input": true,
+                  "tableView": true
+                }
+              ],
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Adverse and Outcome Effects",
+      "key": "adverseAndOutcomeEffects",
+      "components": []
+    },
+    {
+      "label": "Health Resource Utilization",
+      "key": "healthResourceUtilization",
+      "components": []
+    },
+    {
+      "label": "Quality of Care Metrics",
+      "key": "qualityOfCareMetrics",
+      "components": []
+    }
+  ],
+  "key": "tabs",
+  "type": "tabs",
+  "input": false,
+  "tableView": false
+}

@@ -1,0 +1,5 @@
+{% extends "admin/change_list.html" %} {% load i18n %} {% block title %}{{
+cl.title|default:title }} | {{ site_title|default:_('Django site admin') }}
+{%endblock %} {% block content_title %} 
+<h1>{{ cl.title|default:title }}</h1>
+{% endblock %}

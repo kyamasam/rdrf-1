@@ -13,7 +13,7 @@ from django.conf import settings
 import pycountry
 
 from rdrf.db.dynamic_data import DynamicDataWrapper
-from rdrf.models.definition.models import Registry, Section, ConsentQuestion
+from rdrf.models.definition.models import PatientPseudonym, Registry, Section, ConsentQuestion
 from rdrf.models.definition.models import ClinicalData
 from rdrf.models.workflow_models import ClinicianSignupRequest
 from rdrf.helpers.utils import get_cde_value2
@@ -153,10 +153,15 @@ class PatientManager(models.Manager):
     def inactive(self):
         return self.really_all().filter(active=False)
 
-
+class Hospital(models.Model):
+    name= models.CharField(max_length=255)
+    location =  models.CharField(max_length=255)
+    def __str__(self):
+        return f"{self.name} ({self.location})"
 class Patient(models.Model):
 
     SEX_CHOICES = (("1", _("Male")), ("2", _("Female")), ("3", _("Indeterminate")))
+    MARITAL_STATUS_CHOICES = (("single", _("Single")), ("married", _("Married")), ("divorced", _("Divorced")))
 
     ETHNIC_ORIGIN = (
         ("New Zealand European", _("New Zealand European")),
@@ -233,10 +238,10 @@ class Patient(models.Model):
         default=False,
     )
     family_name = models.CharField(
-        max_length=100, db_index=True, verbose_name=_("Family Name")
+        max_length=100, db_index=True, verbose_name=_("First Name")
     )
     given_names = models.CharField(
-        max_length=100, db_index=True, verbose_name=_("Given Names")
+        max_length=100, db_index=True, verbose_name=_("Last Name")
     )
     maiden_name = models.CharField(
         max_length=100,
@@ -244,6 +249,10 @@ class Patient(models.Model):
         blank=True,
         verbose_name=_("Maiden name (if applicable)"),
     )
+    national_id = models.CharField(
+        "National Id/Passport",max_length=255, null=True, blank=True
+    )
+    hospital = models.ForeignKey(Hospital, on_delete=models.SET_NULL, null=True, blank=True)
     umrn = models.CharField(
         max_length=50,
         null=True,
@@ -273,6 +282,7 @@ class Patient(models.Model):
         verbose_name=_("Ethnic origin"),
     )
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, verbose_name=_("Sex"))
+    marital_status = models.CharField(max_length=255, choices=MARITAL_STATUS_CHOICES,null=True, blank=True, verbose_name=_("Marital Status"))
     home_phone = models.CharField(
         max_length=30, blank=True, null=True, verbose_name=_("Home phone")
     )
@@ -303,7 +313,8 @@ class Patient(models.Model):
         max_length=50, blank=True, null=True, verbose_name=_("Suburb/Town")
     )
     next_of_kin_state = models.CharField(
-        max_length=20, verbose_name=_("State/Province/Territory"), blank=True, null=True
+        "County",
+        max_length=20,  blank=True, null=True
     )
     next_of_kin_postcode = models.IntegerField(
         verbose_name=_("Postcode"), blank=True, null=True
@@ -409,6 +420,27 @@ class Patient(models.Model):
         else:
             return "%s %s (Archived)" % (self.family_name, self.given_names)
 
+
+    @property
+    def actual_name(self):
+        try:
+            pseudonym= PatientPseudonym.objects.filter(original_patient_record = self.pk).first()
+            if pseudonym is None:
+                full_name = "N/A"
+            full_name = "%s %s" % (pseudonym.patient_first_name, pseudonym.patient_last_name)
+        except Exception as e:
+            full_name = "N/A"
+            print(e)
+
+        if self.active:
+            return full_name
+        else:
+            return "%s %s (Archived)" % (full_name)
+
+        pseudonym= PatientPseudonym.objects.filter(original_patient_record = 7).first()
+        if pseudonym is not None:
+            return f"{pseudonym.patient_first_name} {pseudonym.patient_last_name}"
+        return "N/A"
     @property
     def name_with_deident(self):
         if self.deident:
@@ -924,19 +956,43 @@ class Patient(models.Model):
             return "%s %s (Archived)" % (self.family_name, self.given_names)
 
     def save(self, *args, **kwargs):
+        # Check if this is a new patient being created
+        is_new = self.pk is None
+        
+        if is_new:
+            # Generate pseudonym before saving
+            # This ensures we have a pk to use
+            super(Patient, self).save(*args, **kwargs)
+            
+            # Generate pseudonym format "Patient XXXXXX"
+            pseudonym_first_name = f"Patient "
+            pseudonym_last_name = f"{str(self.pk)}"
+            
+
+            
+            # Store original names
+            PatientPseudonym.objects.create(
+                pseudonym=pseudonym_first_name+f" {pseudonym_last_name}",
+                original_patient_record=self.pk,
+                patient_first_name=self.given_names,
+                patient_last_name=self.family_name
+            )
+        
+            # Replace names with pseudonym
+            self.family_name = pseudonym_first_name
+            self.given_names = pseudonym_last_name
+        
         if hasattr(self, "family_name"):
             self.family_name = stripspaces(self.family_name).upper()
 
         if hasattr(self, "given_names"):
             self.given_names = stripspaces(self.given_names)
 
-        if not self.pk:
-            self.active = True
-
         if not self.deident:
             if supports_deidentification_workflow():
                 self.deident = generate_deidentified_id()
-
+        
+        # Save again with pseudonym if new patient
         super(Patient, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
@@ -1565,13 +1621,13 @@ class AddressType(models.Model):
 class PatientAddress(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     address_type = models.ForeignKey(
-        AddressType, default=1, verbose_name=_("Address type"), on_delete=models.CASCADE
+        AddressType, default=1, verbose_name=_("Address type"), on_delete=models.CASCADE,  null=True, blank=True
     )
-    address = models.TextField()
-    suburb = models.CharField(max_length=100, verbose_name=_("Suburb/Town"))
+    address = models.TextField(null=True, blank=True)
+    suburb = models.CharField(max_length=100, verbose_name=_("Suburb/Town"), null=True, blank=True)
     country = models.CharField(max_length=100, verbose_name=_("Country"))
-    state = models.CharField(max_length=50, verbose_name=_("State"))
-    postcode = models.CharField(max_length=50, verbose_name=_("Postcode"))
+    state = models.CharField("County",max_length=50)
+    postcode = models.CharField(max_length=50, verbose_name=_("Postcode"),  null=True, blank=True)
 
     class Meta:
         verbose_name_plural = _("Patient Addresses")
@@ -1815,3 +1871,317 @@ def delete_associated_patient_if_any(sender, instance, **kwargs):
     if instance.relative_patient:
         if not hasattr(instance, "skip_archiving"):
             instance.relative_patient.delete()
+
+
+
+# additional models
+from django.db import models
+from django_jsonform.models.fields import JSONField
+# create a builder
+FORM_BUILDER_SCHEMA =   {
+        "type": "object",
+        "properties": {
+            "sections": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {"type": "string"},
+                        "label": {"type": "string"},
+                        "fields": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {"type": "string"},
+                                    "label": {"type": "string"},
+                                    "field_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "text",
+                                            "number",
+                                            "email",
+                                            "textarea",
+                                            "select",
+                                            "radio",
+                                            "checkbox",
+                                            "date",
+                                            "nested"
+                                        ]
+                                    },
+                                    "required": {"type": "boolean"},
+                                    "options": {
+                                        "type": "array",
+                                        "items": {"type": "string"}
+                                    },
+                                    "nested_fields": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {"type": "string"},
+                                                "label": {"type": "string"},
+                                                "field_type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "text",
+                                                        "number",
+                                                        "email",
+                                                        "textarea",
+                                                        "select",
+                                                        "radio",
+                                                        "checkbox",
+                                                        "date"
+                                                    ]
+                                                },
+                                                "required": {"type": "boolean"},
+                                                "options": {
+                                                    "type": "array",
+                                                    "items": {"type": "string"}
+                                                }
+                                            },
+                                            "required": ["name", "label", "field_type"]
+                                        }
+                                    }
+                                },
+                                "required": ["name", "label", "field_type"]
+                            }
+                        }
+                    },
+                    "required": ["name", "label", "fields"]
+                }
+            }
+        }
+    }
+class PatientCustomForm(models.Model):
+    definition = JSONField( schema=FORM_BUILDER_SCHEMA, default={})
+    name = models.CharField(max_length=255)
+
+    def get_schema(self):
+        # Implement your schema generation logic here based on 'definition'
+        # Example:
+        schema = {
+            "type": "object",
+            "properties": {}
+        }
+
+        for field_name, field_type in self.definition.items():
+            schema["properties"][field_name] = {
+                "type": field_type 
+            } 
+
+        return schema
+
+
+    def __str__(self):
+        return self.name
+    
+
+from django.db import models
+PATIENT_FORM_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "smoking": {
+            "type": "object",
+            "properties": {
+                "consumption": {
+                    "type": "string",
+                    "enum": ["Less than/Equal to 1 pack/day", "More than 1 pack/day"]
+                },
+                "age_started": {"type": "string"},
+                "years_smoking": {"type": "string"},
+                "secondhand_smoke": {
+                    "type": "object",
+                    "properties": {
+                        "exposed": {"type": "boolean"},
+                        "years_exposed": {"type": "string"}
+                    }
+                }
+            }
+        },
+        "physical_activity": {
+            "type": "object",
+            "properties": {
+                "type": {"type": "string"},
+                "minutes_per_exercise": {"type": "string"},
+                "frequency": {
+                    "type": "string",
+                    "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                }
+            }
+        },
+        "diet": {
+            "type": "object",
+            "properties": {
+                "fish_meat_poultry_egg": {
+                    "type": "object",
+                    "properties": {
+                        "specify": {"type": "string"},
+                        "frequency": {
+                            "type": "string",
+                            "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                        }
+                    }
+                },
+                "rice_grains_bread": {
+                    "type": "object",
+                    "properties": {
+                        "specify": {"type": "string"},
+                        "frequency": {
+                            "type": "string",
+                            "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                        }
+                    }
+                },
+                "fruits_vegetables": {
+                    "type": "object",
+                    "properties": {
+                        "specify": {"type": "string"},
+                        "frequency": {
+                            "type": "string",
+                            "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                        }
+                    }
+                },
+                "fats_oils": {
+                    "type": "object",
+                    "properties": {
+                        "specify": {"type": "string"},
+                        "frequency": {
+                            "type": "string",
+                            "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                        }
+                    }
+                },
+                "sugar_sweet": {
+                    "type": "object",
+                    "properties": {
+                        "specify": {"type": "string"},
+                        "frequency": {
+                            "type": "string",
+                            "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                        }
+                    }
+                },
+                "milk_products": {
+                    "type": "object",
+                    "properties": {
+                        "specify": {"type": "string"},
+                        "frequency": {
+                            "type": "string",
+                            "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                        }
+                    }
+                }
+            }
+        },
+        "alcohol": {
+            "type": "object",
+            "properties": {
+                "type": {"type": "string"},
+                "amount": {"type": "string"},
+                "unit": {
+                    "type": "string",
+                    "enum": ["Bottle", "Shot", "Glass"]
+                },
+                "frequency": {
+                    "type": "string",
+                    "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+                },
+                "age_started": {"type": "string"},
+                "years_drinking": {"type": "string"}
+            }
+        },
+        "family_history": {
+            "type": "object",
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "Hypertension",
+                            "CVD",
+                            "Stroke",
+                            "Cancer",
+                            "Asthma",
+                            "TB",
+                            "Diabetes"
+                        ]
+                    }
+                },
+                "other_conditions": {"type": "string"},
+                "family_member_age_diagnosis": {"type": "string"}
+            }
+        },
+        "medical_details": {
+            "type": "object",
+            "properties": {
+                "referral_date": {"type": "string"},
+                "consultation_date": {"type": "string"},
+                "referring_doctor": {"type": "string"},
+                "reason_for_referral": {"type": "string"},
+                "height": {"type": "string"},
+                "weight": {"type": "string"},
+                "bmi": {"type": "string"},
+                "physiologic_state": {
+                    "type": "string",
+                    "enum": ["Pregnant", "Breastfeeding", "Not applicable"]
+                },
+                "presenting_symptoms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "Polyuria",
+                            "Polydipsia",
+                            "Polyphagia",
+                            "Weight Loss",
+                            "Peripheral neuropathy"
+                        ]
+                    }
+                },
+                "other_symptoms": {"type": "string"}
+            }
+        },
+        "laboratory_investigations": {
+            "type": "object",
+            "properties": {
+                "hemogram": {"type": "string"},
+                "hba1c": {"type": "string"},
+                "lipid_profile": {"type": "string"},
+                "uecs": {"type": "string"},
+                "fbs": {"type": "string"},
+                "rbs": {"type": "string"},
+                "ogtt": {"type": "string"}
+            }
+        },
+        "treatment": {
+            "type": "object",
+            "properties": {
+                "anti_hypertensive": {
+                    "type": "object",
+                    "properties": {
+                        "drug_dose_name": {"type": "string"}
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+class FormBuilder(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    
+    # This will store the form structure
+    schema = JSONField(default=dict, schema=FORM_BUILDER_SCHEMA)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name

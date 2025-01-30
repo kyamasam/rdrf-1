@@ -10,7 +10,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Q
 from django.core.paginator import Paginator, InvalidPage
-from rdrf.models.definition.models import Registry
+from rdrf.models.custom_forms.models import CustomFormData
+from rdrf.models.definition.models import PatientPseudonym, Registry
 from rdrf.forms.progress.form_progress import FormProgress
 from rdrf.db.contexts_api import RDRFContextManager
 from rdrf.forms.components import FormGroupButton
@@ -45,6 +46,7 @@ class PatientsListingView(View):
         self.records_total = None
         self.filtered_total = None
         self.context = {}
+        
 
     def get(self, request):
         # get just displays the empty table and writes the page
@@ -61,6 +63,8 @@ class PatientsListingView(View):
         self.set_registry(request)
         self.set_registries()  # for drop down
         self.patient_id = request.GET.get("patient_id", None)
+
+        print("")
 
         template_context = self.build_context()
         template = self.get_template()
@@ -83,7 +87,8 @@ class PatientsListingView(View):
 
     def get_columns(self):
         return [
-            ColumnFullName(_("Patient"), "patients.can_see_full_name"),
+            ColumnFullName(_("Pseudonym"), "patients.can_see_full_name"),
+            ColumnActualName(_("Actual Name"), "rdrf.view_patientpseudonym"),
             ColumnDateOfBirth(_("Date of Birth"), "patients.can_see_dob"),
             ColumnCodeField(_("Code"), "patients.can_see_code_field"),
             ColumnUmrn(_("UMRN"), "patients.can_see_umrn"),
@@ -217,6 +222,18 @@ class PatientsListingView(View):
         self.filtered_total = self.patients.count()
         return self.get_rows_in_page()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        unique_form_codes = CustomFormData.objects.values_list('form_code', flat=True).distinct()
+        context['form_codes'] = [
+            {
+                'code': form_code,
+                'title': ''.join(' ' + char if char.isupper() else char for char in form_code).strip().title(),
+                'url': f"{reverse('admin:rdrf_customformdata_changelist')}?form_code={form_code}"
+            }
+            for form_code in unique_form_codes
+        ]
+        return context
     def _get_main_or_default_context(self, patient_model):
         # for registries which do not have multiple contexts this will be the single context model
         # assigned to the patient
@@ -430,19 +447,53 @@ class ColumnFullName(Column):
 
     def cell(self, patient, supports_contexts=False, form_progress=None, context_manager=None):
         return self.link_template % (patient.id, patient.display_name)
-
-
+# class ColumnActualName(Column):
+#     field = "actual_name"
+#     # def to_dict(self, i):
+#     #     "Structure used by jquery datatables"
+#     #     return {
+#     #         "data": "data",
+#     #         "label": " self.label",
+#     #         "order": i,
+#     #     }
+from django.urls import reverse
+from django.db.models import Case, When, Value, CharField, OuterRef, Subquery
+from django.db.models.functions import Concat
 class ColumnDateOfBirth(Column):
     field = "date_of_birth"
     sort_fields = ["date_of_birth"]
 
     def fmt(self, val):
         return val.strftime("%d-%m-%Y") if val is not None else ""
+from django.urls import reverse
+from django.db.models import Case, When, Value, CharField, OuterRef, Subquery
+from django.db.models.functions import Concat
 
+from django.urls import reverse
+from django.db.models import Case, When, Value, CharField, OuterRef, Subquery
+from django.db.models.functions import Concat
 
 class ColumnCodeField(Column):
     field = 'code_field'
     sort_fields = []
+class ColumnActualName(Column):
+    field = 'actual_name'
+    sort_fields = []
+
+    def configure(self, registry, user, order):
+        super().configure(registry, user, order) 
+
+        print("**** can see**")
+        # print(self.user_can_see) 
+        print(self.user)  # Corrected line
+        print(self.perm)  # Corrected line
+        print("**** has perm**")
+        from django.contrib.auth.models import Permission
+
+        print(self.user.has_perm("rdrf.add_patientpseudonym")) 
+        perms = Permission.objects.filter(group__user=self.user,name__icontains="pse").values('codename')
+        print(perms) 
+        pass
 
 
 class ColumnNonContexts(Column):

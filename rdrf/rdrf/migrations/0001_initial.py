@@ -176,6 +176,21 @@ class Migration(migrations.Migration):
                     help_text='The id of the patient created from this response, if any', null=True, blank=True)),
             ],
         ),
+          migrations.RunSQL(
+            "DROP TABLE IF EXISTS rdrf_registry;",
+            reverse_sql="""
+            CREATE TABLE IF NOT EXISTS rdrf_registry (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(80) NOT NULL,
+                code VARCHAR(10) NOT NULL,
+                desc TEXT NOT NULL,
+                splash_screen TEXT NOT NULL,
+                patient_splash_screen TEXT NULL,
+                version VARCHAR(20) DEFAULT '',
+                metadata_json TEXT DEFAULT ''
+            );
+            """
+        ),
         migrations.CreateModel(
             name='Registry',
             fields=[

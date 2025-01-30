@@ -7,6 +7,7 @@ from django.views.i18n import JavaScriptCatalog
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
+from rdrf.views.custom_forms_view import PostCustomFormDataViewSet
 from two_factor import views as twv
 
 from rdrf.auth.forms import (
@@ -20,7 +21,7 @@ from rdrf.auth.views import (
     SetupView,
     DisableView,
 )
-
+from rest_framework.routers import DefaultRouter
 import rdrf.views.form_view as form_view
 import rdrf.views.registry_view as registry_view
 import rdrf.views.landing_view as landing_view
@@ -456,6 +457,12 @@ normalpatterns += [
     re_path(r"session_security/", include("session_security.urls")),
 ]
 
+router = DefaultRouter()
+
+router.register(r"api/custom-form-data", PostCustomFormDataViewSet, basename="custom_form_data"),
+api_patterns = [
+    path('', include(router.urls)),
+]
 if not settings.IS_WORKER and not settings.SYSTEM_ROLE == "CIC_PROMS":
     dash_patterns = [
         re_path("^dash/", include("django_plotly_dash.urls")),
@@ -506,7 +513,7 @@ test_urls = [
     re_path(r"^test/", TestView.as_view(), name="test"),
 ]
 
-urlpatterns = test_urls + urlpatterns
+urlpatterns = test_urls + urlpatterns + api_patterns
 
 if settings.HUB_ENABLED:
     urlpatterns += integration_patterns

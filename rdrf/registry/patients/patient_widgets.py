@@ -16,6 +16,7 @@ class PatientRelativeLinkWidget(widgets.Widget):
     """
 
     def render(self, name, value, attrs=None, renderer=None):
+        
         if value is None:
             return """<input type="checkbox" id="%s" name="%s">""" % (attrs['id'], name)
         elif value == 'on':

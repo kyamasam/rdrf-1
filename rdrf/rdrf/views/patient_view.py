@@ -288,20 +288,15 @@ class PatientFormMixin(PatientMixin):
                 _("Here you can find an overview of all your personal and contact details you have given us. You can update your contact details by changing the information below.")
 
         personal_details_fields = (personal_header, [
-            "family_name",
-            "given_names",
-            "maiden_name",
-            "umrn",
+            "family_name","given_names",
+            "national_id",
+            "marital_status",
+            "hospital",
             "date_of_birth",
             "date_of_death",
             "place_of_birth",
-            "date_of_migration",
-            "country_of_birth",
-            "ethnic_origin",
             "sex",
-            "home_phone",
             "mobile_phone",
-            "work_phone",
             "email",
             "living_status",
         ])
@@ -310,16 +305,9 @@ class PatientFormMixin(PatientMixin):
             "next_of_kin_family_name",
             "next_of_kin_given_names",
             "next_of_kin_relationship",
-            "next_of_kin_address",
-            "next_of_kin_suburb",
             "next_of_kin_country",
             "next_of_kin_state",
-            "next_of_kin_postcode",
-            "next_of_kin_home_phone",
             "next_of_kin_mobile_phone",
-            "next_of_kin_work_phone",
-            "next_of_kin_email",
-            "next_of_kin_parent_place_of_birth"
         ])
 
         rdrf_registry = (_("Centres"), [
@@ -992,20 +980,16 @@ class PatientEditView(View):
                 instance=patient, prefix="patient_address")
 
         personal_details_fields = (_('Patients Personal Details'), [
-            "family_name",
+           "family_name",         
             "given_names",
-            "maiden_name",
-            "umrn",
+            "national_id",
+            "marital_status",
+            "hospital",
             "date_of_birth",
             "date_of_death",
-            "place_of_birth",
-            "date_of_migration",
             "country_of_birth",
-            "ethnic_origin",
             "sex",
-            "home_phone",
             "mobile_phone",
-            "work_phone",
             "email",
             "living_status",
         ])
@@ -1014,16 +998,9 @@ class PatientEditView(View):
             "next_of_kin_family_name",
             "next_of_kin_given_names",
             "next_of_kin_relationship",
-            "next_of_kin_address",
-            "next_of_kin_suburb",
             "next_of_kin_country",
             "next_of_kin_state",
-            "next_of_kin_postcode",
-            "next_of_kin_home_phone",
             "next_of_kin_mobile_phone",
-            "next_of_kin_work_phone",
-            "next_of_kin_email",
-            "next_of_kin_parent_place_of_birth"
         ])
 
         rdrf_registry = (_("Centres"), [

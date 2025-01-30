@@ -243,18 +243,29 @@ class CountryWidget(widgets.Select):
         output = [format_html("<select{}>", flatatt(final_attrs))]
         empty_option = "<option value=''>---------</option>"
         output.append(empty_option)
+        # First add Kenya at the top
+        output.append(
+            "<option value='KE' %s>Kenya</option>" % 
+            ('selected' if value == 'KE' else '')
+        )
+        output.append("<option disabled>──────────</option>")  # Optional: Add a separator
+
+        # Then add all other countries alphabetically
         for country in sorted(pycountry.countries, key=lambda c: c.name):
-            if value == country.alpha_2:
-                output.append(
-                    "<option value='%s' selected>%s</option>"
-                    % (country.alpha_2, country.name)
+            # Skip Kenya since we already added it
+            if country.alpha_2 == 'KE':
+                continue
+                
+            output.append(
+                "<option value='%s' %s>%s</option>" % (
+                    country.alpha_2,
+                    'selected' if value == country.alpha_2 else '',
+                    country.name
                 )
-            else:
-                output.append(
-                    "<option value='%s'>%s</option>" % (country.alpha_2, country.name)
-                )
+            )
         output.append("</select>")
         return mark_safe("\n".join(output))
+
 
 
 class StateWidget(widgets.Select):

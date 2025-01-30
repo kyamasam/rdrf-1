@@ -78,14 +78,24 @@
 
         });
     </script>
+    <style>
+    
+    </style>
 
 </head>
+
 
 <body>
     <div id="wrap">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
                 <div class="navbar-header">
+                    <img
+                    src="{% static 'images/logos/crean-logo-white.png' %}"
+                    alt="CREA-N Logo"
+                    height="50"
+                    class="pr-4"
+                    />
                     {% if PL %}
                     {% static "" as baseUrl %}
                     <a href="{% project_logo_link %}" target="_blank">
@@ -102,6 +112,7 @@
                         {% project_title %}
                     </a>
                     {% endif %}
+                    
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -204,7 +215,7 @@
         </nav>
 
         {% if location %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top border-bottom border-2 pb-0 pt-{% if PL %}2{% else %}1{% endif %} location-navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top border-bottom border-2 pb-0 pt-{% if PL %}2{% else %}1{% endif %} pt-4 location-navbar">
             <div class="container{% if PL %} mt-3{% endif %}">
                 <h3 class="navbar-brand fs-3 flex-fill mb-1"><span class="fa fa-list-alt" aria-hidden="true"></span>
                     {% block location %}
