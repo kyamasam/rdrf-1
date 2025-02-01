@@ -590,7 +590,7 @@ LOGIN_FAILURE_LIMIT = env.get("login_failure_limit", 3)
 
 # APPLICATION SPECIFIC SETTINGS
 AUTH_PROFILE_MODULE = "groups.User"
-ALLOWED_HOSTS = env.getlist("allowed_hosts", ["localhost", "127.0.0.1"])
+ALLOWED_HOSTS = env.getlist("allowed_hosts", ["localhost", "127.0.0.1", "67.205.160.1"])
 
 # This honours the X-Forwarded-Host header set by our nginx frontend when
 # constructing redirect URLS.
