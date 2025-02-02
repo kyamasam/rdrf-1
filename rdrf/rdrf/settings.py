@@ -206,6 +206,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django_user_agents.middleware.UserAgentMiddleware",
 ]
+IPRESRICT_TRUSTED_PROXIES = ['62.8.90.115']
 
 
 PROMS_MIDDLEWARE = [
