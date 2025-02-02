@@ -232,14 +232,17 @@ else:
     MIDDLEWARE.append("rdrf.middleware.DummyCSPMiddleware")
 
 INSTALLED_APPS = [
-    "django.contrib.contenttypes",
+    # Django core apps 
     "django.contrib.auth",
+    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sites",
-    "django.contrib.staticfiles",
     "django.contrib.messages",
-    "django_extensions",
+    "django.contrib.staticfiles",
     "django.contrib.admin",
+    
+    # Third-party apps
+    "django_extensions",
     "messages_ui",
     "ajax_select",
     "explorer",
@@ -249,10 +252,6 @@ INSTALLED_APPS = [
     "anymail",
     "rdrf",
     "intframework",
-    "registry.groups",
-    "registry.patients",
-    "registry.common",
-    "registry.genetic",
     "registration",
     "reversion",
     "storages",
@@ -262,7 +261,13 @@ INSTALLED_APPS = [
     "two_factor",
     "django_user_agents",
     "formtools",
-    "django_jsonform"
+    "django_jsonform",
+    
+    # registry apps last
+    "registry.groups",
+    "registry.patients",
+    "registry.common",
+    "registry.genetic",
 ]
 
 IS_WORKER = env.get("is_worker", 0)
