@@ -194,7 +194,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 MIDDLEWARE = [
     "useraudit.middleware.RequestToThreadLocalMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "iprestrict.middleware.IPRestrictMiddleware",
+    # "iprestrict.middleware.IPRestrictMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -211,7 +211,7 @@ MIDDLEWARE = [
 PROMS_MIDDLEWARE = [
     "useraudit.middleware.RequestToThreadLocalMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "iprestrict.middleware.IPRestrictMiddleware",
+    # "iprestrict.middleware.IPRestrictMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
