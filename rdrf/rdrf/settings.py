@@ -559,7 +559,7 @@ DB_FILES = {
 # DATABASE_HOST = DATABASES["default"]["HOST"]
 
 # session and cookies
-FORMIO_URL = env.get("FORMIO_URL", "http://localhost:3001")
+FORMIO_URL = env.get("FORMIO_URL", "http://67.205.168.170:3001")
 SESSION_COOKIE_AGE = env.get("session_cookie_age", 60 * 60)
 SESSION_COOKIE_PATH = "{0}/".format(SCRIPT_NAME)
 SESSION_SAVE_EVERY_REQUEST = env.get("session_save_every_request", True)

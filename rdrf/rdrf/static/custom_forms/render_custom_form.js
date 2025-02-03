@@ -162,6 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const patientId = formContainer.dataset.patientId;
   const registryId = formContainer.dataset.registryId;
   // const formioUrl = formContainer.dataset.formioUrl || "http://localhost:3001";
-  const formioUrl = "http://localhost:3001";
+  const formioUrl = "http://67.205.168.170:3001";
   renderFormioForm(formName, patientId, registryId, formioUrl);
 });
