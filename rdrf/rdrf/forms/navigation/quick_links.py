@@ -57,9 +57,9 @@ class Links:
         # )
         PatientsListing = QuickLink(reverse("patientslisting"), _("Patient List"))
 
-        PatientsDashboard = QuickLink(
-            reverse("dashboards:overall"), _("All Patients Dashboard")
-        )
+        # PatientsDashboard = QuickLink(
+        #     reverse("dashboards:overall"), _("All Patients Dashboard")
+        # )
         QuestionnaireResponses = QuickLink(
             reverse("admin:rdrf_questionnaireresponse_changelist"),
             _("Questionnaire Responses"),
@@ -271,7 +271,7 @@ class Links:
         }
         DATA_ENTRY = {
             PatientsListing.text: PatientsListing,
-            PatientsDashboard.text: PatientsDashboard,
+            # PatientsDashboard.text: PatientsDashboard,
         }
         EMAIL = {
             EmailNotification.text: EmailNotification,

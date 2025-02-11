@@ -310,7 +310,7 @@ class PatientFormMixin(PatientMixin):
             "next_of_kin_mobile_phone",
         ])
 
-        rdrf_registry = (_("Centres"), [
+        rdrf_registry = (_("Registry"), [
             "rdrf_registry",
             "working_groups",
             "clinician"
@@ -1003,7 +1003,7 @@ class PatientEditView(View):
             "next_of_kin_mobile_phone",
         ])
 
-        rdrf_registry = (_("Centres"), [
+        rdrf_registry = (_("Registry"), [
             "rdrf_registry",
             "working_groups",
             "clinician"

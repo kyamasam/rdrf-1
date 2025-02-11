@@ -91,7 +91,7 @@ class PatientDetail(generics.RetrieveUpdateDestroyAPIView):
                 request, message='Not allowed to get Patients from this Registry')
 
         if not patient.working_groups.filter(pk__in=request.user.working_groups.all()).exists():
-            self.permission_denied(request, message='Patient not assigned to your centre')
+            self.permission_denied(request, message='Patient not assigned to your Registry')
 
 
 class PatientList(generics.ListCreateAPIView):
