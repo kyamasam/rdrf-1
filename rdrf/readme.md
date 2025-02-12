@@ -70,3 +70,12 @@ CREATE TABLE rdrf_clinicaldata (
 
 
 http://127.0.0.1:8000/admin/fh/questionnaire
+
+
+
+### import hospitals 
+in django shell
+```shell
+from registry.patients.import_hospitals import import_hospitals
+import_hospitals()
+```

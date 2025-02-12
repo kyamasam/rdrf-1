@@ -156,6 +156,8 @@ class PatientManager(models.Manager):
 class Hospital(models.Model):
     name= models.CharField(max_length=255)
     location =  models.CharField(max_length=255)
+    level = models.CharField(max_length=255, null=True, blank=True)
+    ownership = models.CharField(max_length=255, null=True, blank=True)
     def __str__(self):
         return f"{self.name} ({self.location})"
 class Patient(models.Model):
