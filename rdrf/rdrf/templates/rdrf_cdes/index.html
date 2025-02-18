@@ -62,8 +62,6 @@
       .hero {
         position: relative;
         min-height: 70vh;
-        background: url('{% static "images/hero_section/hero_image.png" %}')
-          no-repeat center center;
         background-size: cover;
         display: flex;
         align-items: center;
@@ -376,7 +374,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="background:url('{% static "images/hero_section/hero_image.png" %}') no-repeat center center; background-size: cover;">
+
       <div class="container">
         <div class="hero-content">
           <div class="row">
