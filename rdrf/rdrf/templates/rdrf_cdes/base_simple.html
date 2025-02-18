@@ -1,32 +1,31 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <title>{% trans "Rare Disease Registry Framework" %}</title>
+  <head>
+    <title>{% trans "CREA-N Chronic Disease Registry Framework" %}</title>
 
-        <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.css' %}">
-        <link rel="stylesheet" href="{% static 'bootstrap-5.0.0/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap-5.0.0/css/bootstrap.min.css' %}"
+    />
 
-        <script type="text/javascript" src="{% static 'js/vendor/jquery-3.6.0.min.js' %}" ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"
+    ></script>
 
-        {% block extrahead %}
-        {% endblock %}
+    {% block extrahead %} {% endblock %}
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="container">{% block content%} {% endblock%}</div>
+    </div>
 
-    </head>
-    <body>
-
-
-        <div id="wrap">
-
-            <div class="container">
-                {% block content%}
-                {% endblock%}
-            </div>
-
-        </div>
-
-        <script type="text/javascript" src="{% static 'bootstrap-5.0.0/js/bootstrap.bundle.min.js' %}"></script>
-    </body>
+    <script
+      type="text/javascript"
+      src="{% static 'bootstrap-5.0.0/js/bootstrap.bundle.min.js' %}"
+    ></script>
+  </body>
 </html>

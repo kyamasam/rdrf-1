@@ -1,0 +1,225 @@
+{% load static %} {% load version_number %} {% load i18n %} {% load translate %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% trans "CREA-N Chronic Disease Registry Framework" %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/compiled/theme.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/vendor/animate.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap-5.0.0/css/bootstrap.min.css' %}"
+    />
+    <!-- javascript -->
+    <script
+      type="text/javascript"
+      src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"
+    ></script>
+    <script type="text/javascript" src="{% static 'js/theme.js' %}"></script>
+
+    <!--[if lt IE 9]>
+      <script
+        type="text/javascript"
+        src="{% static 'js/vendor/html5shiv-3.7.3.min.js' %}"
+      ></script>
+    <![endif]-->
+  </head>
+  <body id="home">
+    <nav class="navbar navbar-expand-lg navbar-dark hero pt-0">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target=".bs-navbar-collapse"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{% url 'landing' %}" class="navbar-brand">
+            <img
+              src="{% static 'images/logos/crean_logo.png' %}"
+              alt="CREA-N Logo"
+              height="70"
+            />
+          </a>
+        </div>
+        <div class="navbar-expanded-lg">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li class="nav-item">
+              <a class="nav-link" href="/account/login?next=/router/"
+                >{% trans "Login" %}</a
+              >
+            </li>
+            {% comment %} <li class="nav-item dropdown"
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                {% trans "Registries" %}
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                data-bs-display="static"
+              >
+                {% if registries|length %} {% for reg in registries %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'registry' reg.code %}">
+                    {{reg.name|translate}}{% if reg.version %}
+                    v{{reg.version}}{% endif %}
+                  </a>
+                </li>
+                {% endfor %} {% else %}
+                <li>
+                    <a 
+                    class="dropdown-item"
+                    href="{% url 'admin:login' %}?next=/admin/rdrf/registry/"
+                    >Login</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </li> {% endcomment %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="hero">
+      <div class="container">
+        <h1 class="hero-text animated fadeInDown">
+          {% trans "CREA-N Chronic Disease " %}<br />
+          {% trans "Registry Framework" %}
+        </h1>
+        <p class="sub-text animated fadeInDown">
+          Comprehensive tracking of Cancer, Diabetes, and Hypertension
+        </p>
+      </div>
+    </div>
+
+    <div id="features">
+      <div class="container">
+        <div class="row header">
+          <div class="col-md-12 mb-4">
+            <h3>Empowering Health Management through Data</h3>
+            <p>
+              A centralized registry for critical chronic diseases in Kenya.
+            </p>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="row header">
+          <div class="col-md-12 my-4">
+            <h3>{% trans "CREA-N Chronic Disease Registry" %}</h3>
+            <p>
+              {% blocktrans %} The CREA-N Chronic Disease Registry Framework
+              is a comprehensive platform designed to track and manage
+              critical health conditions including Cancer, Diabetes, and
+              Hypertension. This registry enables healthcare professionals and
+              policymakers to: - Monitor disease prevalence and trends - Improve
+              patient care and treatment strategies - Support evidence-based
+              health policy decisions - Enhance national health research
+              capabilities {% endblocktrans %}
+            </p>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="row header">
+          <div class="col-md-12 mt-4">
+            <h3>{% trans "Key Focus Areas" %}</h3>
+            <div class="row">
+              <div class="col-md-4">
+                <h4>{% trans "Cancer Registry" %}</h4>
+                <p>
+                  Comprehensive tracking of cancer cases, types, and treatment
+                  outcomes across Kenya.
+                </p>
+              </div>
+              <div class="col-md-4">
+                <h4>{% trans "Diabetes Registry" %}</h4>
+                <p>
+                  Monitoring diabetes prevalence, management, and associated
+                  health indicators.
+                </p>
+              </div>
+              <div class="col-md-4">
+                <h4>{% trans "Hypertension Registry" %}</h4>
+                <p>
+                  Tracking blood pressure trends and cardiovascular health
+                  across populations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-12 menu">
+            <ul class="list-group list-group-horizontal text-center">
+              <li class="col-sm-4 flex-fill">
+                <a href="mailto:chronicdiseases@health.go.ke"
+                  >chronicdiseases@health.go.ke</a
+                >
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="https://crean-health.com/"> CREA-N Chronic Disease Registry Framework </a>
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="#">National Health Research</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-12 menu">
+            <ul class="list-group list-group-horizontal text-center">
+              <li class="col-sm-4 flex-fill">
+                <a href="#">{% trans "About the Registry" %}</a>
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="#">{% trans "Data Privacy" %}</a>
+              </li>
+              <li class="col-sm-4 flex-fill">
+                <a href="#">{% trans "Contact Us" %}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 copyright">
+            {% trans "Authorised by" %} Clinical Research Health Network (CREA-N) , Republic of Kenya
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 copyright">
+            {% trans "Copyright" %} © {% now "Y" %} Kenya Clinical Research Health Network (CREA-N) .
+            {%trans "All Rights Reserved" %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="{% static 'bootstrap-5.0.0/js/bootstrap.bundle.min.js' %}"
+    ></script>
+  </body>
+</html>

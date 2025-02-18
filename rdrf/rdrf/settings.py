@@ -841,7 +841,7 @@ REST_FRAMEWORK = {
     "DEFAULT_VERSION": "v1",
 }
 
-PROJECT_TITLE = env.get("project_title", "Rare Disease Registry Framework")
+PROJECT_TITLE = env.get("project_title", "CREA-N Chronic Disease Registry Framework")
 PROJECT_TITLE_LINK = (
     "admin:index" if SYSTEM_ROLE == SystemRoles.CIC_PROMS else "patientslisting"
 )

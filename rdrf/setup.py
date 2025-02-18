@@ -136,7 +136,7 @@ setup(
     version="6.6.51",
     packages=packages,
     description="RDRF",
-    long_description="Rare Disease Registry Framework",
+    long_description="CREA-N Chronic Disease Registry Framework",
     author="Centre for Comparative Genomics",
     author_email="rdrf@ccg.murdoch.edu.au",
     package_data=package_data,

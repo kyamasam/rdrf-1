@@ -1,53 +1,57 @@
-{% extends "rdrf_cdes/base.html" %}
-{% load i18n %}
-
-{% block header %}
+{% extends "rdrf_cdes/base.html" %} {% load i18n %} {% block header %}
 <div id="branding" class="branding">
-    <h1 id="site-name">{% trans "Rare Disease Registry Framework" %}</h1>
+  <h1 id="site-name">
+    {% trans "CREA-N Chronic Disease Registry Framework" %}
+  </h1>
 </div>
-{% endblock %}
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1><i>Welcome to CREA-N Chronic Disease Registry Framework!</i></h1>
+  </div>
 
-{% block content %}
-    <div class="container">
-	<div class="page-header">
-	  <h1><i>Welcome to Rare Disease Registry Framework!</i></h1>
-	</div>
-    
-	<div class="card">
-	<p class="text-justify">
-    {{ blocktrans }}
-	  RDRF ( Rare Disease Registry Framework ) is a tool for the creation of web-based data entry forms and questionnaires based on reusable data element definitions ( "Common Data Elements" ) which can be created and/or loaded into the system at runtime without changes to the source code. RDRF has been developed at the Centre for Comparative Genomics
-    {{ endblocktrans }}
-	</p>
-	</div>
-	<div class="card">
-	    <div class="card-header"><h3>{% trans 'The following registries are defined on this site' %}</h3></div>
-	    <table class="table table-hover">
-        <thead>
+  <div class="card">
+    <p class="text-justify">
+      {{ blocktrans }} RDRF ( CREA-N Chronic Disease Registry Framework ) is a
+      tool for the creation of web-based data entry forms and questionnaires
+      based on reusable data element definitions ( "Common Data Elements" )
+      which can be created and/or loaded into the system at runtime without
+      changes to the source code. RDRF has been developed at the Centre for
+      Comparative Genomics {{ endblocktrans }}
+    </p>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>{% trans 'The following registries are defined on this site' %}</h3>
+    </div>
+    <table class="table table-hover">
+      <thead>
         <th>{% trans 'Registry' %}</th>
         <th>{% trans 'Version' %}</th>
         <th>{% trans 'Description' %}</th>
         <th>{% trans 'Information Page' %}</th>
-        </thead>
-	    {% for reg in registrys %}
-	        <tr>
-		    <td>{{reg.name|upper}}</td>
-            {% if reg.version %}
-            <td>{{reg.version}}</td>
-            {% else %}
-            <td>{% trans 'No version code' %}</td>
-            {% endif %}
-		    <td>{{ reg.desc }}</td>
-		    <td>
-			{% if reg.splash_screen %}
-			    <a href="{% url 'registry' reg.code %}" target="_blank"><span class="fa fa-hand-right"></span> {% trans 'Go to the registry' %}</a>
-			{% else %}
-			    {% trans 'No further information is available' %}
-			{% endif %}
-		    </td>
-		</tr>
-	    {% endfor %}
-	    </table>
-	</div>
-    </div>
+      </thead>
+      {% for reg in registrys %}
+      <tr>
+        <td>{{reg.name|upper}}</td>
+        {% if reg.version %}
+        <td>{{reg.version}}</td>
+        {% else %}
+        <td>{% trans 'No version code' %}</td>
+        {% endif %}
+        <td>{{ reg.desc }}</td>
+        <td>
+          {% if reg.splash_screen %}
+          <a href="{% url 'registry' reg.code %}" target="_blank"
+            ><span class="fa fa-hand-right"></span> {% trans 'Go to the
+            registry' %}</a
+          >
+          {% else %} {% trans 'No further information is available' %} {% endif
+          %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
 {% endblock %}

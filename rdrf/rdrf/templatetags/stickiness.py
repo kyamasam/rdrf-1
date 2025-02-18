@@ -3,7 +3,7 @@ from rdrf.models.definition.models import Registry
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 
-DEFAULT_NAME = "Rare Disease Registry Framework"
+DEFAULT_NAME = "CREA-N Chronic Disease Registry Framework"
 
 register = template.Library()
 
