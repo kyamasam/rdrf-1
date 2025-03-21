@@ -6,6 +6,7 @@ from django.db import models
 class CustomFormData(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     data = models.JSONField()
+    visit_number = models.IntegerField(default=1)
     form_code =  models.CharField(max_length=255)
     registry = models.ForeignKey(Registry, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -367,8 +367,33 @@
                         {% endif %}
                     </div>
                     {% comment %} check if this is a custom form, if it is, then render using the section string {% endcomment %}
+                    <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <strong>Patient Visits</strong>
+                                <button id="create-new-visit-btn" type="button" class="btn btn-primary btn-sm">
+                                    <span class="fa fa-plus" aria-hidden="true"></span> New Visit
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div id="loading-visits" class="text-center my-4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <p class="mt-2">Loading visits data...</p>
+                                </div>
+                                
+                                <div id="visits-container" class="row">
+                                    <!-- Cards will be dynamically inserted here -->
+                                </div>
+                                
+                                <div id="no-visits" class="alert alert-info text-center my-4 d-none">
+                                    No visit records found.
+                                </div>
+                            </div>
+                        </div>                   
                     {% if form_types|get_form_type:s %}
                     <div class="card-body">
+
                         <div data-form-name="{{s}}" data-registry-id="{{registry_id}}" data-patient-id="{{patient_id}}" data-formio-url="{{formio_url}}" id="formio"></div>
                     </div>
                     {% comment %} if it is not a custom form, render the actual native section {% endcomment %}
@@ -591,5 +616,91 @@
             return originalAddEventListener.call(this, type, listener, options);
         };
     });
+</script>
+<script type="text/javascript" nonce="{{request.csp_nonce}}">
+    document.addEventListener('DOMContentLoaded', function() {
+        const createNewVisitBtn = document.getElementById('create-new-visit-btn');
+        if (createNewVisitBtn) {
+            createNewVisitBtn.addEventListener('click', createNewVisit);
+        }
+    });
+
+    function createNewVisit(event) {
+        // Prevent default button behavior
+        event.preventDefault();
+        event.stopPropagation();
+        // Get context information from the page
+        const formContainer = document.getElementById('formio');
+        const formName = formContainer?.dataset.formName || 'testForm';
+        const patientId = formContainer?.dataset.patientId;
+        const registryId = formContainer?.dataset.registryId;
+        
+        if (!patientId || !registryId) {
+            showNotification('error', 'Missing patient or registry information');
+            return;
+        }
+        
+        // Determine next visit number
+        let nextVisitNumber = 1;
+        const visitCards = document.querySelectorAll('#visits-container .card');
+        if (visitCards.length > 0) {
+            // Try to find the highest visit number from existing cards
+            const visitNumbers = Array.from(visitCards).map(card => {
+                const badgeText = card.querySelector('.badge').textContent;
+                const match = badgeText.match(/Visit #(\d+)/);
+                return match ? parseInt(match[1], 10) : 0;
+            });
+            
+            if (visitNumbers.length > 0) {
+                nextVisitNumber = Math.max(...visitNumbers) + 1;
+            }
+        }
+        
+        // Create new empty visit
+        $.ajax({
+            url: "/api/custom-form-data/",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                patient_id: patientId,
+                registry_id: registryId,
+                form_code: formName,
+                visit_number: nextVisitNumber,
+                data: {} // Empty data to start with
+            }),
+            success: function(response) {
+                showNotification('success', 'New visit created successfully');
+                
+                // Refresh the visits list
+                retrieveAllVisitsFormioFormData(formName, patientId, registryId, true)
+                    .then(function(data) {
+                        // Clear existing cards
+                        const container = document.getElementById('visits-container');
+                        container.innerHTML = '';
+                        
+                        // Display updated cards
+                        displayVisitCards(data);
+                        
+                        // Optionally, redirect to edit the new visit
+                        if (response && response.id) {
+                            // Uncomment to redirect automatically:
+                            // window.location.href = `/visits/edit/${response.id}/`;
+                        }
+                    });
+            },
+            error: function(xhr) {
+                let errorMessage = 'Failed to create new visit';
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        errorMessage = response.error;
+                    }
+                } catch (e) {
+                    console.error('Error parsing response:', e);
+                }
+                showNotification('error', errorMessage);
+            }
+        });
+    }
 </script>
 {% endblock %}

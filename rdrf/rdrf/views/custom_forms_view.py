@@ -22,9 +22,12 @@ class PostCustomFormDataViewSet(viewsets.ViewSet):
             patient =  serializer.validated_data.pop('patient_id')
             registry = serializer.validated_data.pop('registry_id')
             form_code = serializer.validated_data.get('form_code')
+            visit_number = serializer.data.get('visit_number')
+            print("*****", visit_number)
             existing_data = CustomFormData.objects.filter(
                 patient=patient,
-                registry_id=registry,
+                registry=registry,
+                visit_number=visit_number,
                 form_code=form_code
             ).first()
             if existing_data is None:
@@ -62,13 +65,22 @@ class PostCustomFormDataViewSet(viewsets.ViewSet):
         pass the following params 
         patient_id: int
         registry_id: int
+        visit_number: int
+        all_visits: boolean
         form_code: str
         """
         # params
         params = request.query_params
         patient_id = params.get('patient_id')
+        visit_number = params.get('visit_number', None)
         registry_id = params.get('registry_id')
         form_code = params.get('form_code')
+        all_visits = params.get('all_visits',None)
+
+        if all_visits is not None:
+            all_visits = True if all_visits.lower() == 'true' else False
+        else:
+            all_visits = False
         # Add validation for required parameters
         if not all([patient_id, registry_id, form_code]):
             return Response(
@@ -79,9 +91,17 @@ class PostCustomFormDataViewSet(viewsets.ViewSet):
         data = CustomFormData.objects.filter(
                 patient_id=patient_id,
                 registry_id=registry_id,
-                form_code=form_code
-            ).first()
-        
+                form_code=form_code,
+            )
+        if visit_number:
+            data = data.filter(visit_number=visit_number)
+
+
+        if not all_visits:
+            data = data.latest('updated_at')
+        else:
+            return Response(CustomFormDataSerializer(data, many=True).data, status=status.HTTP_200_OK)
+            
         if data is None:
             return Response({"error" : "Could not find custom form data "},status=status.HTTP_404_NOT_FOUND)
         return Response(CustomFormDataSerializer(data).data, status=status.HTTP_200_OK)

@@ -1,0 +1,1280 @@
+{
+  "label": "Tabs",
+  "components": [
+    {
+      "label": "Clinical Information",
+      "key": "clinicalInformation",
+      "components": [
+        {
+          "title": "Date",
+          "collapsible": false,
+          "key": "diabetesInfo",
+          "type": "panel",
+          "label": "Type 2 Diabetes Information",
+          "components": [
+            {
+              "label": "Diagnosis Date",
+              "key": "diagnosisDate",
+              "type": "datetime",
+              "format": "yyyy-MM hh:mm a",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Current Medications",
+          "title": "Current Medications",
+          "key": "currentMedications",
+          "type": "panel",
+          "tooltip": "List current medications for diabetes",
+          "components": [
+            {
+              "label": "Medications",
+              "tooltip": "List current medications for diabetes",
+              "applyMaskOn": "change",
+              "autoExpand": false,
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "medications",
+              "type": "textarea",
+              "input": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Diabetes Related Complications",
+          "collapsible": false,
+          "key": "diabetesRelatedComplications",
+          "type": "panel",
+          "label": "Diabetes-Related Complications",
+          "components": [
+            {
+              "label": "Diabetic Retinopathy/Nephropathy/Neuropathy",
+              "key": "retinopathyNephropathyNeuropathy",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Foot Ulcer",
+              "key": "footUlcer",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetes-related Amputations",
+              "key": "amputations",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Coma",
+              "key": "diabeticComa",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Ketoacidosis",
+              "key": "ketoacidosis",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Diabetic Cardiomyopathy",
+              "key": "cardiomyopathy",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Cardiovascular Conditions",
+          "collapsible": false,
+          "key": "cardiovascularConditions",
+          "type": "panel",
+          "label": "Cardiovascular Conditions",
+          "components": [
+            {
+              "label": "Atrial Fibrillation",
+              "key": "atrialFibrillation",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Congestive Heart Failure",
+              "key": "chf",
+              "type": "textfield",
+              "suffix": "ejection fraction %",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Acute Coronary Syndrome/MI History",
+              "key": "acsHistory",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "CABG History",
+              "key": "cabgHistory",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "PCI History",
+              "key": "pciHistory",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Angina Frequency",
+              "key": "anginaFrequency",
+              "type": "select",
+              "data": {
+                "values": [
+                  {
+                    "label": "Daily",
+                    "value": "daily"
+                  },
+                  {
+                    "label": "Weekly",
+                    "value": "weekly"
+                  },
+                  {
+                    "label": "Monthly",
+                    "value": "monthly"
+                  },
+                  {
+                    "label": "None",
+                    "value": "none"
+                  }
+                ]
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Dyslipidemia",
+              "key": "dyslipidemia",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Neurological Conditions",
+          "collapsible": false,
+          "key": "neurologicalConditions",
+          "type": "panel",
+          "label": "Neurological Conditions",
+          "components": [
+            {
+              "label": "Cerebrovascular Accident",
+              "key": "cva",
+              "type": "radio",
+              "values": [
+                {
+                  "label": "Ischemic",
+                  "value": "ischemic"
+                },
+                {
+                  "label": "Hemorrhagic",
+                  "value": "hemorrhagic"
+                },
+                {
+                  "label": "None",
+                  "value": "none"
+                }
+              ],
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Transient Ischemic Attack",
+              "key": "tia",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Vascular Conditions",
+          "collapsible": false,
+          "key": "vascularConditions",
+          "type": "panel",
+          "label": "Vascular Conditions",
+          "components": [
+            {
+              "label": "Peripheral Vascular Disease",
+              "key": "pvd",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Intermittent Claudication",
+              "key": "claudication",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Revascularization Procedure",
+              "key": "revascularization",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Malignancy Information",
+          "collapsible": false,
+          "key": "malignancyInfo",
+          "type": "panel",
+          "label": "Malignancy Information",
+          "components": [
+            {
+              "label": "Malignancy Type",
+              "key": "malignancyType",
+              "type": "textarea",
+              "rows": 2,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Diagnosis Date",
+              "key": "malignancyDiagnosisDate",
+              "type": "datetime",
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Other Medical Conditions",
+          "collapsible": false,
+          "key": "otherMedicaConditionsSection1",
+          "type": "panel",
+          "label": "Other Medical Conditions",
+          "components": [
+            {
+              "label": "Pancreatitis",
+              "key": "pancreatitis1",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Gallstones/Biliary Tract Disease",
+              "key": "biliaryConditions1",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Hypertriglyceridemia",
+              "key": "hypertriglyceridemia1",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Hypertension",
+              "key": "hypertension1",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Others",
+              "tooltip": "List current medications for diseases other than diabetes",
+              "applyMaskOn": "change",
+              "autoExpand": false,
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "conditions1",
+              "type": "textarea",
+              "input": true
+            },
+            {
+              "label": "Chronic Renal Disease",
+              "key": "renalDisease2",
+              "type": "textfield",
+              "suffix": "stage",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Liver Disease",
+              "key": "liverDisease2",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Peptic Ulcer Disease",
+              "key": "pepticUlcer2",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Rheumatologic Disease",
+              "key": "rheumatologicDisease2",
+              "type": "checkbox",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Diagnostic Tests",
+      "key": "diagnosticTests",
+      "components": [
+        {
+          "label": "Blood Glucose",
+          "key": "bloodGlucose",
+          "type": "number",
+          "suffix": "mg/dL",
+          "validate": {
+            "min": 70,
+            "max": 140,
+            "required": true
+          },
+          "description": "Blood glucose level",
+          "input": true,
+          "tableView": true
+        },
+        {
+          "type": "fieldset",
+          "label": "Glycemic Control",
+          "key": "glycemicControl",
+          "components": [
+            {
+              "label": "HbA1c (Glycated hemoglobin)",
+              "description": "Current Glycated haemoglobin value in %",
+              "suffix": "%",
+              "applyMaskOn": "change",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validate": {
+                "min": 2.15,
+                "max": 25
+              },
+              "validateWhenHidden": false,
+              "key": "hba1c",
+              "type": "number",
+              "input": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "type": "fieldset",
+          "label": "Kidney Function Tests",
+          "key": "kidneyFunction",
+          "components": [
+            {
+              "label": "Serum Creatinine",
+              "description": "Serum creatinine value in µmol/L",
+              "suffix": "µmol/L",
+              "applyMaskOn": "change",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validate": {
+                "min": 3,
+                "max": 1999
+              },
+              "validateWhenHidden": false,
+              "key": "creatinine",
+              "type": "number",
+              "input": true
+            },
+            {
+              "type": "number",
+              "label": "eGFR (Estimated Glomerular Filtration Rate)",
+              "key": "egfr",
+              "input": true,
+              "suffix": "mL/min/1.73m²",
+              "description": "Estimated Glomerular Filtration Rate",
+              "validate": {
+                "required": true
+              },
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Glucose Measurements",
+          "key": "glucoseMetabolism",
+          "type": "fieldset",
+          "components": [
+            {
+              "label": "Sodium (Na+)",
+              "key": "elec_sodium",
+              "type": "number",
+              "suffix": "mEq/L",
+              "referenceRange": {
+                "min": 135,
+                "max": 145
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Potassium (K+)",
+              "key": "elec_potassium",
+              "type": "number",
+              "suffix": "mEq/L",
+              "referenceRange": {
+                "min": 3.5,
+                "max": 5
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Chloride (Cl-)",
+              "key": "elec_chloride",
+              "type": "number",
+              "suffix": "mEq/L",
+              "referenceRange": {
+                "min": 96,
+                "max": 106
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Bicarbonate (HCO3-)",
+              "key": "elec_bicarbonate",
+              "type": "number",
+              "suffix": "mEq/L",
+              "referenceRange": {
+                "min": 22,
+                "max": 29
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Calcium (Ca2+)",
+              "key": "elec_calcium",
+              "type": "number",
+              "suffix": "mg/dL",
+              "referenceRange": {
+                "min": 8.5,
+                "max": 10.5
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Magnesium (Mg2+)",
+              "key": "elec_magnesium",
+              "type": "number",
+              "suffix": "mg/dL",
+              "referenceRange": {
+                "min": 1.7,
+                "max": 2.2
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "Phosphate (PO4)",
+              "key": "elec_phosphate",
+              "type": "number",
+              "suffix": "mg/dL",
+              "referenceRange": {
+                "min": 2.5,
+                "max": 4.5
+              },
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "Lipid Panel",
+          "key": "lipidPanel",
+          "type": "fieldset",
+          "components": [
+            {
+              "label": "Total Cholesterol",
+              "suffix": "mg/dL",
+              "applyMaskOn": "change",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validate": {
+                "min": 0.01,
+                "max": 50
+              },
+              "validateWhenHidden": false,
+              "key": "totalCholesterol",
+              "type": "number",
+              "referenceRange": {
+                "desirable": {
+                  "max": 200
+                },
+                "borderline": {
+                  "min": 200,
+                  "max": 239
+                },
+                "high": {
+                  "min": 240
+                }
+              },
+              "input": true
+            },
+            {
+              "label": "HDL Cholesterol",
+              "suffix": "mg/dL",
+              "applyMaskOn": "change",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validate": {
+                "min": 0.01,
+                "max": 5
+              },
+              "validateWhenHidden": false,
+              "key": "hdl",
+              "type": "number",
+              "referenceRange": {
+                "low": {
+                  "max": 40
+                },
+                "optimal": {
+                  "min": 60
+                }
+              },
+              "input": true
+            },
+            {
+              "label": "LDL Cholesterol",
+              "suffix": "mg/dL",
+              "applyMaskOn": "change",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validate": {
+                "min": 0.01,
+                "max": 15
+              },
+              "validateWhenHidden": false,
+              "key": "ldl",
+              "type": "number",
+              "referenceRange": {
+                "optimal": {
+                  "max": 100
+                },
+                "nearOptimal": {
+                  "min": 100,
+                  "max": 129
+                },
+                "borderline": {
+                  "min": 130,
+                  "max": 159
+                },
+                "high": {
+                  "min": 160,
+                  "max": 189
+                },
+                "veryHigh": {
+                  "min": 190
+                }
+              },
+              "input": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Adverse and Outcome Effects",
+      "key": "adverseAndOutcomeEffects",
+      "components": [
+        {
+          "label": "Symptomatic hypoglycemia",
+          "tableView": true,
+          "key": "symptomaticHypoglycemia",
+          "type": "checkbox",
+          "input": true
+        },
+        {
+          "label": "Hyperglycemic hyperosmolar non-ketosis",
+          "tableView": true,
+          "key": "hyperglycemicHyperosmolarNonKetosis",
+          "type": "checkbox",
+          "input": true
+        },
+        {
+          "label": "Diabetic ketoacidosis (DKA)",
+          "tableView": true,
+          "validateWhenHidden": false,
+          "key": "diabeticKetoacidosis",
+          "type": "checkbox",
+          "input": true
+        },
+        {
+          "label": "Events leading to hospitalization",
+          "tableView": true,
+          "key": "eventsLeadingToHospitalization",
+          "type": "checkbox",
+          "input": true
+        },
+        {
+          "label": "End Stage Renal Therapy",
+          "tableView": true,
+          "key": "endStageRenalTherapy",
+          "type": "checkbox",
+          "input": true,
+          "conditional": {
+            "show": true,
+            "when": "endStageRenalTherapy",
+            "eq": "true"
+          }
+        },
+        {
+          "label": "Year of Chronic Serum Creatinine >300umol/l or Permanent Dialysis/Transplant",
+          "applyMaskOn": "change",
+          "mask": false,
+          "tableView": true,
+          "delimiter": false,
+          "requireDecimal": false,
+          "inputFormat": "plain",
+          "truncateMultipleSpaces": false,
+          "validateWhenHidden": false,
+          "key": "renalTherapyYear",
+          "type": "number",
+          "input": true
+        },
+        {
+          "label": "Renal Dialysis",
+          "tableView": true,
+          "validateWhenHidden": false,
+          "key": "renalDialysis",
+          "type": "checkbox",
+          "input": true,
+          "defaultValue": false
+        },
+        {
+          "label": "Dialysis Year",
+          "applyMaskOn": "change",
+          "mask": false,
+          "tableView": true,
+          "delimiter": false,
+          "requireDecimal": false,
+          "inputFormat": "plain",
+          "truncateMultipleSpaces": false,
+          "validateWhenHidden": false,
+          "key": "dialysisYear",
+          "type": "number",
+          "input": true
+        },
+        {
+          "label": "Renal Transplant",
+          "tableView": true,
+          "validateWhenHidden": false,
+          "key": "renalTransplant",
+          "type": "checkbox",
+          "input": true,
+          "defaultValue": false
+        },
+        {
+          "label": "Renal Transplantation Year",
+          "applyMaskOn": "change",
+          "mask": false,
+          "tableView": true,
+          "delimiter": false,
+          "requireDecimal": false,
+          "inputFormat": "plain",
+          "truncateMultipleSpaces": false,
+          "validateWhenHidden": false,
+          "key": "transplantYear",
+          "type": "number",
+          "input": true
+        },
+        {
+          "label": "Blindness",
+          "tooltip": "Permanent blindness is defined as permanent visual acuity corrected (i.e. wearing corrective lenses) of <3/60 (i.e. CF, HM, PL or NPL) in the better eye.",
+          "tableView": true,
+          "validateWhenHidden": false,
+          "key": "blindness",
+          "type": "checkbox",
+          "input": true
+        }
+      ]
+    },
+    {
+      "label": "Health Resource Utilization",
+      "key": "healthResourceUtilization",
+      "type": "panel",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "label": "Number of diabetes-related visits to a physician not at study site",
+          "tableView": true,
+          "key": "diabetesRelatedVisitsNonStudySite",
+          "type": "number",
+          "validate": {
+            "min": 0,
+            "required": true
+          },
+          "input": true
+        },
+        {
+          "label": "Number of urgent care visits for diabetes",
+          "tableView": true,
+          "key": "urgentCareVisitsDiabetes",
+          "type": "number",
+          "validate": {
+            "min": 0,
+            "required": true
+          },
+          "input": true
+        },
+        {
+          "label": "Number of diabetes-related hospital emergency department visits and reasons",
+          "tableView": true,
+          "key": "emergencyDeptVisits",
+          "type": "fieldset",
+          "input": false,
+          "components": [
+            {
+              "label": "Number of Emergency Department Visits",
+              "applyMaskOn": "change",
+              "mask": false,
+              "tableView": true,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validate": {
+                "required": true,
+                "min": 0
+              },
+              "validateWhenHidden": false,
+              "key": "numberOfVisits",
+              "type": "number",
+              "input": true
+            },
+            {
+              "label": "Emergency Department Visit Reasons",
+              "applyMaskOn": "change",
+              "autoExpand": false,
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "emergencyDeptVisitsReasons",
+              "type": "textarea",
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "Number of hospitalizations, length of stay, and reasons for hospitalizations",
+          "tableView": true,
+          "key": "hospitalizations",
+          "type": "fieldset",
+          "input": false,
+          "components": [
+            {
+              "label": "Number of Hospitalizations",
+              "key": "numberOfHospitalizations",
+              "type": "number",
+              "validate": {
+                "min": 0,
+                "required": true
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Length of Stay (days)",
+              "key": "lengthOfStay",
+              "type": "number",
+              "validate": {
+                "min": 0,
+                "required": true
+              },
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Hospitalization Reasons",
+              "applyMaskOn": "change",
+              "autoExpand": false,
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "numberOfHospitalizationsReasons",
+              "type": "textarea",
+              "input": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Quality of Care Metrics",
+      "key": "qualityOfCareMetrics",
+      "type": "panel",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "label": "Eye and/or foot examination",
+          "tableView": true,
+          "key": "eyeFootExamination",
+          "type": "fieldset",
+          "input": false,
+          "components": [
+            {
+              "label": "Eye Examination",
+              "key": "eyeExam",
+              "type": "checkbox",
+              "defaultValue": false,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Date of Eye Examination",
+              "key": "eyeExamDate",
+              "type": "datetime",
+              "format": "yyyy-MM-dd",
+              "enableTime": false,
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": false,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Foot Examination",
+              "key": "footExam",
+              "type": "checkbox",
+              "defaultValue": false,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Date of Foot Examination",
+              "key": "footExamDate",
+              "type": "datetime",
+              "format": "yyyy-MM-dd",
+              "enableTime": false,
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": false,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ]
+        },
+        {
+          "label": "Smoking cessation",
+          "tableView": true,
+          "key": "smokingCessation",
+          "type": "fieldset",
+          "input": false,
+          "components": [
+            {
+              "label": "Current Smoking Status",
+              "key": "smokingStatus",
+              "type": "select",
+              "input": true,
+              "tableView": true,
+              "data": {
+                "values": [
+                  {
+                    "label": "Current Smoker",
+                    "value": "current"
+                  },
+                  {
+                    "label": "Former Smoker",
+                    "value": "former"
+                  },
+                  {
+                    "label": "Never Smoked",
+                    "value": "never"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Cessation Counseling Provided",
+              "key": "cessationCounseling",
+              "type": "checkbox",
+              "defaultValue": false,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Date of Last Counseling",
+              "key": "counselingDate",
+              "type": "datetime",
+              "format": "yyyy-MM-dd",
+              "enableTime": false,
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": false,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ]
+        },
+        {
+          "label": "Diet and physical activity counseling",
+          "tableView": true,
+          "key": "dietPhysicalCounseling",
+          "type": "fieldset",
+          "input": false,
+          "components": [
+            {
+              "label": "Diet Counseling Provided",
+              "key": "dietCounseling",
+              "type": "checkbox",
+              "defaultValue": false,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Date of Diet Counseling",
+              "key": "dietCounselingDate",
+              "type": "datetime",
+              "format": "yyyy-MM-dd",
+              "enableTime": false,
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": false,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "label": "Physical Activity Counseling Provided",
+              "key": "activityCounseling",
+              "type": "checkbox",
+              "defaultValue": false,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Date of Physical Activity Counseling",
+              "key": "activityCounselingDate",
+              "type": "datetime",
+              "format": "yyyy-MM-dd",
+              "enableTime": false,
+              "input": true,
+              "tableView": true,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": false,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": "tabs",
+  "type": "tabs",
+  "input": false,
+  "tableView": false
+}

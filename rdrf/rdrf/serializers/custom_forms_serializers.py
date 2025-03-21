@@ -31,6 +31,7 @@ class CustomFormDataSerializer(serializers.ModelSerializer):
             'id',
             'patient',
             'patient_id',
+            'visit_number',
             'data',
             'form_code',
             'registry',

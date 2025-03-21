@@ -1,0 +1,923 @@
+{
+  "label": "Tabs",
+  "components": [
+    {
+      "label": "Smoking Behaviour",
+      "key": "tab1",
+      "components": [
+        {
+          "label": "Smoking",
+          "type": "fieldset",
+          "key": "smoking",
+          "components": [
+            {
+              "type": "radio",
+              "label": "Smoking Amount",
+              "key": "smokingAmount",
+              "values": [
+                {
+                  "label": "Less than/Equal to 1 pack consumed per day",
+                  "value": "lessThanOne"
+                },
+                {
+                  "label": "More than 1 pack consumed/day",
+                  "value": "moreThanOne"
+                }
+              ],
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "number",
+              "label": "Age started Smoking",
+              "key": "ageStartedSmoking",
+              "validate": {
+                "min": 0,
+                "max": 120
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "number",
+              "label": "No. of Years Smoking",
+              "key": "yearsOfSmoking",
+              "validate": {
+                "min": 0,
+                "max": 120
+              },
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Second Hand Smoking",
+          "collapsible": false,
+          "key": "secondHandSmoking",
+          "type": "panel",
+          "label": "Panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "With exposure to SHS number of years",
+              "tableView": false,
+              "validateWhenHidden": false,
+              "key": "withExposureToShsNumberOfYears",
+              "type": "checkbox",
+              "input": true,
+              "defaultValue": false
+            }
+          ]
+        },
+        {
+          "label": "Submit",
+          "action": "event",
+          "showValidations": false,
+          "block": true,
+          "tableView": false,
+          "key": "submit",
+          "type": "button",
+          "input": true,
+          "event": "submit"
+        }
+      ]
+    },
+    {
+      "label": "Physical Activity",
+      "key": "physicalActivity",
+      "components": [
+        {
+          "title": "Physical Activity",
+          "collapsible": false,
+          "key": "physicalActivity1",
+          "type": "panel",
+          "label": "Panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Type of exercise",
+              "applyMaskOn": "change",
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "activityType",
+              "type": "textfield",
+              "input": true
+            },
+            {
+              "type": "number",
+              "label": "Minutes per Exercise",
+              "key": "minutesPerExercise",
+              "validate": {
+                "min": 0
+              },
+              "input": true,
+              "tableView": false
+            },
+            {
+              "type": "radio",
+              "label": "Frequency",
+              "key": "frequency",
+              "values": [
+                {
+                  "label": "Daily",
+                  "value": "daily"
+                },
+                {
+                  "label": "Weekly",
+                  "value": "weekly"
+                },
+                {
+                  "label": "Monthly",
+                  "value": "monthly"
+                },
+                {
+                  "label": "Yearly",
+                  "value": "yearly"
+                },
+                {
+                  "label": "Quarterly",
+                  "value": "quarterly"
+                }
+              ],
+              "input": true,
+              "tableView": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Diet",
+      "key": "diet",
+      "components": [
+        {
+          "label": "Typical Diet Intake",
+          "type": "fieldset",
+          "key": "typicalDiet",
+          "components": [
+            {
+              "title": "Typical Diet Intake",
+              "collapsible": false,
+              "key": "typicalDietIntake",
+              "type": "panel",
+              "label": "Panel",
+              "input": false,
+              "tableView": false,
+              "components": [
+                {
+                  "label": "Fish, Meat, Poultry, Egg",
+                  "type": "fieldset",
+                  "key": "protein",
+                  "components": [
+                    {
+                      "label": "Specify type of protein intake: Fish, Meat, Poultry, Egg",
+                      "applyMaskOn": "change",
+                      "tableView": true,
+                      "validateWhenHidden": false,
+                      "key": "proteinSpecify",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "type": "radio",
+                      "label": "Frequency",
+                      "key": "proteinFrequency",
+                      "values": [
+                        {
+                          "label": "Daily",
+                          "value": "daily"
+                        },
+                        {
+                          "label": "Weekly",
+                          "value": "weekly"
+                        },
+                        {
+                          "label": "Monthly",
+                          "value": "monthly"
+                        },
+                        {
+                          "label": "Yearly",
+                          "value": "yearly"
+                        },
+                        {
+                          "label": "Quarterly",
+                          "value": "quarterly"
+                        }
+                      ],
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "input": false,
+                  "tableView": false
+                }
+              ]
+            },
+            {
+              "label": "Rice, Grains, Bread, Cereals, Tubers",
+              "type": "fieldset",
+              "key": "grains",
+              "components": [
+                {
+                  "label": "Specify type of grains/cereals: Rice, Grains, Bread, Cereals, Tubers",
+                  "applyMaskOn": "change",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "key": "grainsSpecify",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "grainsFrequency",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Fruits/Vegetables",
+              "type": "fieldset",
+              "key": "produce",
+              "components": [
+                {
+                  "label": "Specify Type of Fruits/Vegetables",
+                  "applyMaskOn": "change",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "key": "produceSpecify",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "produceFrequency",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Sugar, Sweet",
+              "type": "fieldset",
+              "key": "sugar_sweet",
+              "components": [
+                {
+                  "label": " Specify type of Sugar/Sweets ",
+                  "applyMaskOn": "change",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "key": "sugarSpecify",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "sugarFrequency",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Milk and Milk Products",
+              "type": "fieldset",
+              "key": "milk",
+              "components": [
+                {
+                  "label": "Specify Type of Milk/ and Dairy Products ",
+                  "applyMaskOn": "change",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "key": "milkSpecify",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "label": "Frequency",
+                  "optionsLabelPosition": "right",
+                  "inline": false,
+                  "tableView": false,
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily",
+                      "shortcut": ""
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly",
+                      "shortcut": ""
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly",
+                      "shortcut": ""
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly",
+                      "shortcut": ""
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly",
+                      "shortcut": ""
+                    }
+                  ],
+                  "validateWhenHidden": false,
+                  "key": "milkFrequency",
+                  "type": "radio",
+                  "input": true
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Fats, Oils",
+              "type": "fieldset",
+              "key": "fats",
+              "components": [
+                {
+                  "label": "Specify Type of Fats/Oils",
+                  "applyMaskOn": "change",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "key": "fatsSpecify",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "fatsFrequency",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "key": "specify_others",
+              "type": "fieldset",
+              "label": "Specify Others",
+              "components": [
+                {
+                  "label": "Specify Others",
+                  "applyMaskOn": "change",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "key": "fatsSpecify1",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "fatsFrequency1",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Drinking of Alcoholic Beverages",
+      "key": "drinkingOfAlcoholicBeverages",
+      "components": [
+        {
+          "title": "Drinking of Alcoholic Beverages",
+          "collapsible": false,
+          "key": "drinkingOfAlcoholicBeverages1",
+          "type": "panel",
+          "label": "Panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Drinking of Alcoholic Beverage",
+              "type": "fieldset",
+              "key": "alcohol",
+              "components": [
+                {
+                  "type": "textfield",
+                  "label": "Amount",
+                  "key": "alcoholAmount",
+                  "input": true,
+                  "tableView": true
+                },
+                {
+                  "type": "radio",
+                  "label": "Unit of Measure",
+                  "key": "alcoholUnit",
+                  "values": [
+                    {
+                      "label": "Bottle",
+                      "value": "bottle"
+                    },
+                    {
+                      "label": "Glass",
+                      "value": "glass"
+                    },
+                    {
+                      "label": "Shot",
+                      "value": "shot"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "type": "radio",
+                  "label": "Frequency",
+                  "key": "alcoholFrequency",
+                  "values": [
+                    {
+                      "label": "Daily",
+                      "value": "daily"
+                    },
+                    {
+                      "label": "Weekly",
+                      "value": "weekly"
+                    },
+                    {
+                      "label": "Monthly",
+                      "value": "monthly"
+                    },
+                    {
+                      "label": "Quarterly",
+                      "value": "quarterly"
+                    },
+                    {
+                      "label": "Yearly",
+                      "value": "yearly"
+                    }
+                  ],
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "type": "number",
+                  "label": "Age started drinking alcohol",
+                  "key": "alcoholStartAge",
+                  "validate": {
+                    "min": 0,
+                    "max": 120
+                  },
+                  "input": true,
+                  "tableView": false
+                },
+                {
+                  "type": "number",
+                  "label": "No. of Years drinking alcohol",
+                  "key": "alcoholYears",
+                  "validate": {
+                    "min": 0,
+                    "max": 120
+                  },
+                  "input": true,
+                  "tableView": false
+                }
+              ],
+              "input": false,
+              "tableView": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Family History",
+      "key": "patientHistory",
+      "components": [
+        {
+          "label": "Family History",
+          "type": "fieldset",
+          "key": "familyHistory",
+          "components": [
+            {
+              "title": "Family History of Cancer",
+              "collapsible": false,
+              "key": "familyHistory1",
+              "type": "panel",
+              "label": "Panel",
+              "input": false,
+              "tableView": false,
+              "components": [
+                {
+                  "label": "Cancer ",
+                  "reorder": false,
+                  "addAnother": "Add Another",
+                  "addAnotherPosition": "bottom",
+                  "layoutFixed": false,
+                  "enableRowGroups": false,
+                  "initEmpty": false,
+                  "tableView": false,
+                  "defaultValue": [
+                    {
+                      "familyMember": "",
+                      "cancerType": ""
+                    }
+                  ],
+                  "validateWhenHidden": false,
+                  "key": "familyCancer",
+                  "type": "datagrid",
+                  "addAnotherText": "Add Family Member",
+                  "components": [
+                    {
+                      "type": "textfield",
+                      "label": "Family Member",
+                      "key": "familyMember",
+                      "placeholder": "e.g., Mother, Father, Sister",
+                      "input": true,
+                      "tableView": true
+                    },
+                    {
+                      "type": "textfield",
+                      "label": "Type of Cancer",
+                      "key": "cancerType",
+                      "placeholder": "Specify type of cancer",
+                      "input": true,
+                      "tableView": true
+                    }
+                  ],
+                  "input": true
+                }
+              ]
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "title": "Obstetrics/gynecology history",
+          "collapsible": false,
+          "key": "obstetricsGynecologyHistory",
+          "type": "panel",
+          "label": "Panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Parity",
+              "type": "textfield",
+              "key": "parity",
+              "placeholder": "Enter parity information",
+              "input": true,
+              "tableView": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Cancer Data",
+      "key": "cancerData",
+      "components": [
+        {
+          "label": "Tumor Details",
+          "type": "fieldset",
+          "key": "tumorDetails",
+          "components": [
+            {
+              "type": "textfield",
+              "label": "Type of Cancer",
+              "key": "cancerType",
+              "input": true,
+              "required": true,
+              "tableView": true
+            },
+            {
+              "type": "textfield",
+              "label": "Primary Site",
+              "key": "primarySite",
+              "input": true,
+              "required": true,
+              "tableView": true
+            },
+            {
+              "type": "textfield",
+              "label": "Stage at Diagnosis",
+              "key": "diagnosisStage",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "type": "textfield",
+              "label": "Basis of Diagnosis (Histology/Morphology)",
+              "key": "diagnosisBasis",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "type": "textarea",
+          "label": "Presenting Symptoms",
+          "key": "presentingSymptoms",
+          "input": true,
+          "tableView": true
+        },
+        {
+          "label": "Type of Treatment Received",
+          "type": "fieldset",
+          "key": "treatmentTypes",
+          "components": [
+            {
+              "label": "Chemotherapy",
+              "type": "fieldset",
+              "key": "chemotherapy",
+              "components": [
+                {
+                  "label": "Type of treatment received",
+                  "reorder": false,
+                  "addAnother": true,
+                  "addAnotherPosition": "bottom",
+                  "layoutFixed": false,
+                  "enableRowGroups": false,
+                  "initEmpty": false,
+                  "tableView": false,
+                  "defaultValue": [
+                    {
+                      "chemoDetail": ""
+                    }
+                  ],
+                  "validateWhenHidden": false,
+                  "key": "chemoDetails",
+                  "type": "datagrid",
+                  "addAnotherText": "Add Chemotherapy",
+                  "components": [
+                    {
+                      "label": "Chemotherapy",
+                      "applyMaskOn": "change",
+                      "tableView": true,
+                      "validateWhenHidden": false,
+                      "key": "chemoDetail",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ],
+                  "input": true
+                }
+              ],
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Surgery",
+              "type": "textarea",
+              "key": "surgery",
+              "rows": 2,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Radiotherapy",
+              "type": "textarea",
+              "key": "radiotherapy",
+              "rows": 2,
+              "input": true,
+              "tableView": true
+            },
+            {
+              "label": "Hormone Therapy",
+              "type": "textarea",
+              "key": "hormoneTherapy",
+              "rows": 2,
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "label": "Follow Up",
+      "key": "followUp",
+      "components": [
+        {
+          "type": "fieldset",
+          "label": "Follow-up Information",
+          "key": "followUpInfo",
+          "components": [
+            {
+              "type": "textfield",
+              "label": "Patient status as of date of incidence",
+              "key": "patientStatus",
+              "input": true,
+              "tableView": true
+            },
+            {
+              "type": "datetime",
+              "label": "Last date of contact with physician",
+              "key": "lastContactDate",
+              "input": true,
+              "tableView": false,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "type": "datetime",
+              "label": "Date of death",
+              "key": "deathDate",
+              "input": true,
+              "tableView": false,
+              "widget": {
+                "type": "calendar",
+                "displayInTimezone": "viewer",
+                "locale": "en",
+                "useLocaleSettings": false,
+                "allowInput": true,
+                "mode": "single",
+                "enableTime": true,
+                "noCalendar": false,
+                "format": "yyyy-MM-dd hh:mm a",
+                "hourIncrement": 1,
+                "minuteIncrement": 1,
+                "time_24hr": false,
+                "minDate": null,
+                "maxDate": null
+              }
+            },
+            {
+              "type": "textfield",
+              "label": "Cause of death",
+              "key": "deathCause",
+              "input": true,
+              "conditional": {
+                "show": true,
+                "when": "deathDate",
+                "operator": "notEmpty"
+              },
+              "tableView": true
+            },
+            {
+              "type": "textfield",
+              "label": "Hospice number",
+              "key": "hospiceNumber",
+              "input": true,
+              "tableView": true
+            }
+          ],
+          "input": false,
+          "tableView": false
+        }
+      ]
+    }
+  ],
+  "key": "tabs",
+  "type": "tabs",
+  "input": false,
+  "tableView": false
+}

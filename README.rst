@@ -9,7 +9,7 @@ About
 
 
 
-The Rare Disease Registry Framework (RDRF) is an open source tool for the creation of web-based patient registries. What makes it unique is that data entry forms and questionnaires are based on reusable data element definitions (called "Common Data Elements" ) which can be created and/or loaded into the system at runtime. This means that registries can be created and modified without changes to the source code. RDRF has been developed at the `Centre for Comparative Genomics <https://www.murdoch.edu.au/research/anpc>`_, Murdoch University, Western Australia.
+The CREA-N Chronic Disease Registry Framework (RDRF) is an open source tool for the creation of web-based patient registries. What makes it unique is that data entry forms and questionnaires are based on reusable data element definitions (called "Common Data Elements" ) which can be created and/or loaded into the system at runtime. This means that registries can be created and modified without changes to the source code. RDRF has been developed at the `Centre for Comparative Genomics <https://www.murdoch.edu.au/research/anpc>`_, Murdoch University, Western Australia.
 
 
 Contact
@@ -78,7 +78,7 @@ Contributing
 Updating the Documentation
 --------------------------
 
-Documentation for the Rare Disease Registry Framework is maintained 
+Documentation for the CREA-N Chronic Disease Registry Framework is maintained 
 within this git repository, on the ``gh-pages`` branch.
 
 Update the documentation by editing the reStructured Text source
