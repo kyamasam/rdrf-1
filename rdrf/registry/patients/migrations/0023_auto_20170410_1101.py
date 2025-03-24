@@ -256,7 +256,7 @@ class Migration(migrations.Migration):
             name='postcode',
             field=models.CharField(
                 max_length=50,
-                verbose_name='Postcode'),
+                verbose_name='postcode'),
         ),
         migrations.AlterField(
             model_name='patientaddress',

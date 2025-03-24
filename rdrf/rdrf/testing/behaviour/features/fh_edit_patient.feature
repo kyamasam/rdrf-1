@@ -20,7 +20,7 @@ Feature: Add a patient and add an address
     And I click the add button in "Patient Address" section
     And I fill out "Address" textarea in "Patient Address" section "1" with "23 Hammond Road"
     And I fill out "Suburb" in "Patient Address" section "1" with "Claremont"
-    And I fill out "Postcode" in "Patient Address" section "1" with "6010"
+    And I fill out "postcode" in "Patient Address" section "1" with "6010"
     And I choose "Australia" from "Country" in "Patient Address" section "1"
     And I choose "Australian Capital Territory" from "State" in "Patient Address" section "1"
 

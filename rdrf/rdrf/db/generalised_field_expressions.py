@@ -709,7 +709,7 @@ class GeneralisedFieldExpressionParser(object):
         if address_type not in ["Home", "Postal"]:
             raise FieldExpressionError(
                 "Unknown address type: %s" % address_type)
-        if field not in ["Address", "Suburb", "State", "Country", "Postcode"]:
+        if field not in ["Address", "Suburb", "State", "Country", "postcode"]:
             raise FieldExpressionError("Unknown address field: %s" % field)
 
         try:

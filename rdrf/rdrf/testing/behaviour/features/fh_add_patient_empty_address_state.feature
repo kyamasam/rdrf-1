@@ -19,7 +19,7 @@ Feature: Add a patient and add an address
     And I click the add button in "Patient Address" section
     And I fill out "Address" textarea in "Patient Address" section "1" with "456 Hammond Street"
     And I fill out "Suburb" in "Patient Address" section "1" with "Perth"
-    And I fill out "Postcode" in "Patient Address" section "1" with "6009"
+    And I fill out "postcode" in "Patient Address" section "1" with "6009"
     And I choose "Australia" from "Country" in "Patient Address" section "1"
     And I press the "Save" button
     Then I should see "Patient Address state: This field is required"

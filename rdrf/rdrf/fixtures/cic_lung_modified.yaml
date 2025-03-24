@@ -3078,7 +3078,7 @@ cdes:
   max_length: 4
   max_value: null
   min_value: null
-  name: Postcode
+  name: postcode
   pattern: ''
   pv_group: null
   questionnaire_text: ''
@@ -3817,14 +3817,14 @@ cdes:
   calculation: ''
   code: postcode
   datatype: string
-  desc: Postcode
+  desc: postcode
   important: false
   instructions: ''
   is_required: true
   max_length: null
   max_value: null
   min_value: null
-  name: Postcode
+  name: postcode
   pattern: ''
   pv_group: null
   questionnaire_text: ''

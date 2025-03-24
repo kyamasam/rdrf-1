@@ -163,6 +163,7 @@ class Hospital(models.Model):
 class Patient(models.Model):
 
     SEX_CHOICES = (("1", _("Male")), ("2", _("Female")), ("3", _("Indeterminate")))
+    PARITY_CHOICES = (("0",_("0")),("1",_("1")),("2",_("2")),("3",_("3")),("4",_("4")),("5",_("5")),)    
     MARITAL_STATUS_CHOICES = (("single", _("Single")), ("married", _("Married")), ("divorced", _("Divorced")))
 
     ETHNIC_ORIGIN = (
@@ -284,6 +285,7 @@ class Patient(models.Model):
         verbose_name=_("Ethnic origin"),
     )
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, verbose_name=_("Sex"))
+    parity = models.CharField(max_length=1, choices=PARITY_CHOICES, verbose_name=_("Parity"), null=True, blank=True)
     marital_status = models.CharField(max_length=255, choices=MARITAL_STATUS_CHOICES,null=True, blank=True, verbose_name=_("Marital Status"))
     home_phone = models.CharField(
         max_length=30, blank=True, null=True, verbose_name=_("Home phone")
@@ -319,7 +321,7 @@ class Patient(models.Model):
         max_length=20,  blank=True, null=True
     )
     next_of_kin_postcode = models.IntegerField(
-        verbose_name=_("Postcode"), blank=True, null=True
+        verbose_name=_("postcode"), blank=True, null=True
     )
     next_of_kin_home_phone = models.CharField(
         max_length=30, blank=True, null=True, verbose_name=_("Home phone")
@@ -1623,13 +1625,13 @@ class AddressType(models.Model):
 class PatientAddress(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     address_type = models.ForeignKey(
-        AddressType, default=1, verbose_name=_("Address type"), on_delete=models.CASCADE,  null=True, blank=True
+        AddressType, verbose_name=_("Address type"), on_delete=models.CASCADE,  null=True, blank=True
     )
     address = models.TextField(null=True, blank=True)
     suburb = models.CharField(max_length=100, verbose_name=_("Village/State"), null=True, blank=True)
     country = models.CharField(max_length=100, verbose_name=_("Country"))
     state = models.CharField("County",max_length=50)
-    postcode = models.CharField(max_length=50, verbose_name=_("Postcode"),  null=True, blank=True)
+    postcode = models.CharField(max_length=50, verbose_name=_("Landmark"),  null=True, blank=True)
 
     class Meta:
         verbose_name_plural = _("Patient Addresses")

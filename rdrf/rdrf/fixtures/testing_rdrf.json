@@ -9997,7 +9997,7 @@
     "fields": {
       "pv_group": null,
       "allow_multiple": false,
-      "name": "Postcode",
+      "name": "postcode",
       "datatype": "string",
       "max_value": null,
       "min_value": null,
@@ -10006,7 +10006,7 @@
       "calculation": "",
       "max_length": null,
       "pattern": "",
-      "desc": "Postcode",
+      "desc": "postcode",
       "is_required": false,
       "instructions": ""
     }

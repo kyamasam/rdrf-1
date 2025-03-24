@@ -53,7 +53,7 @@ KEY_MAP = {
     "CDEPatientNextOfKinSuburb": ("next_of_kin_suburb", None),
     "CDEPatientNextOfKinCountry": ("next_of_kin_country", None),
     "CDEPatientNextOfKinState": ("next_of_kin_state", None),
-    "CDEPatientNextOfKinPostCode": ("next_of_kin_postcode", None),
+    "CDEPatientNextOfKinpostcode": ("next_of_kin_postcode", None),
     "PatientConsentByGuardian": ("consent_provided_by_parent_guardian", None),
     # "CDEPatientNextOfKinHomePhone": ("next_of_kin_home_phone", None),
     # "CDEPatientNextOfKinMobilePhone": ("next_of_kin_mobile_phone", None),

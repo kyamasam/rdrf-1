@@ -454,7 +454,7 @@ class ReviewItem(models.Model):
         pairs.append(("Suburb", address.suburb))
         pairs.append(("Country", address.country))
         pairs.append(("State", address.state))
-        pairs.append(("Postcode", address.postcode))
+        pairs.append(("postcode", address.postcode))
         return pairs
 
     def _get_demographics_fields(self, patient_model, raw):

@@ -275,7 +275,7 @@ class DataDefinitionReport(object):
         fields.append(
             DemographicField(DemographicForm.HOME_ADDRESS, "State", "RANGE", AUS_STATES)
         )
-        fields.append(DemographicField(DemographicForm.HOME_ADDRESS, "Postcode"))
+        fields.append(DemographicField(DemographicForm.HOME_ADDRESS, "postcode"))
         fields.append(
             DemographicField(
                 DemographicForm.HOME_ADDRESS, "Country", "RANGE", COUNTRIES

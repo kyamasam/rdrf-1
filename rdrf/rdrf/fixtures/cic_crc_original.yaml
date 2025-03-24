@@ -2070,14 +2070,14 @@ cdes:
   calculation: ''
   code: BCCApatient_postcode
   datatype: integer
-  desc: Postcode
+  desc: postcode
   important: false
   instructions: 9999 if unknown
   is_required: false
   max_length: 4
   max_value: null
   min_value: null
-  name: Postcode
+  name: postcode
   pattern: ''
   pv_group: null
   questionnaire_text: ''
@@ -6194,7 +6194,7 @@ cdes:
   max_length: 4
   max_value: null
   min_value: null
-  name: Postcode
+  name: postcode
   pattern: ''
   pv_group: null
   questionnaire_text: ''
@@ -7247,14 +7247,14 @@ cdes:
   calculation: ''
   code: postcode
   datatype: string
-  desc: Postcode
+  desc: postcode
   important: false
   instructions: ''
   is_required: false
   max_length: null
   max_value: null
   min_value: null
-  name: Postcode
+  name: postcode
   pattern: ''
   pv_group: null
   questionnaire_text: ''
@@ -13004,12 +13004,12 @@ reports:
     ha.address as "HomeAddressStreet",
     ha.suburb as "HomeAddressSuburb",
     ha.state as "HomeAddressState",
-    ha.postcode as "HomeAddressPostcode",
+    ha.postcode as "HomeAddresspostcode",
     ha.country as "HomeAddressCountry",
     pa.address as "PostalAddressStreet",
     pa.suburb as "PostalAddressSuburb",
     pa.state as "PostalAddressState",
-    pa.postcode as "PostalAddressPostcode",
+    pa.postcode as "PostalAddresspostcode",
     pa.country as "PostalAddressCountry",
     p.email,
     case p.sex

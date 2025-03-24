@@ -162,6 +162,7 @@ class PatientConsentFileForm(forms.ModelForm):
 
 class PatientForm(forms.ModelForm):
 
+
     ADDRESS_ATTRS = {
         "rows": 3,
         "cols": 30,
@@ -175,6 +176,12 @@ class PatientForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         clinicians = CustomUser.objects.all()
         instance = None
+
+        # # Add a custom class to the parity field for JavaScript targeting
+        # self.fields['parity'].widget.attrs['class'] = 'parity-field'
+        
+        # # Add data attribute to help JavaScript know which fields to show/hide
+        # self.fields['parity'].widget.attrs['data-requires-female'] = 'true'
 
         if 'registry_model' in kwargs:
             self.registry_model = kwargs['registry_model']

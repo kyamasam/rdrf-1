@@ -348,7 +348,7 @@ class Migration(migrations.Migration):
                 ('next_of_kin_postcode',
                  models.IntegerField(
                      null=True,
-                     verbose_name='Postcode',
+                     verbose_name='postcode',
                      blank=True)),
                 ('next_of_kin_home_phone',
                  models.CharField(

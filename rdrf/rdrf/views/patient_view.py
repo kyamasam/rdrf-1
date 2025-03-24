@@ -974,13 +974,12 @@ class PatientEditView(View):
                                                             form=PatientAddressForm,
                                                             extra=0,
                                                             can_delete=True,
-                                                            fields="__all__")
+                                                            fields=['patient','country','state','suburb','postcode',])
 
             patient_address_form = patient_address_formset(
                 instance=patient, prefix="patient_address")
-
-        personal_details_fields = (_('Patients Personal Details'), [
-           "family_name",         
+        personal_details_base_fields = [
+            "family_name",         
             "given_names",
             "national_id",
             "marital_status",
@@ -989,10 +988,16 @@ class PatientEditView(View):
             "date_of_death",
             "country_of_birth",
             "sex",
+            "parity",
             "mobile_phone",
             "email",
             "living_status",
-        ])
+        ]
+      
+   
+        personal_details_fields = (_('Patients Personal Details'), personal_details_base_fields)
+
+
 
         next_of_kin = (_("Next of Kin"), [
             "next_of_kin_family_name",

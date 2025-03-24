@@ -488,4 +488,28 @@
             event.stopPropagation();
         });
     </script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Function to show/hide parity field based on sex
+    function toggleParityField() {
+      var sexField = $('#id_sex');
+      var parityField = $('#id_parity').closest('.row');
+        console.log("sexField.val()", sexField.val(), parityField)
+      
+      if (sexField.val() === '2') {  
+        parityField.show();
+      } else {
+        parityField.hide();
+        // Optional: Clear the value when hidden
+        $('#id_parity').val('');
+      }
+    }
+    
+    // Run on page load
+    toggleParityField();
+    
+    // Run when sex field changes
+    $('#id_sex').change(toggleParityField);
+  });
+</script>
 {% endblock %}
