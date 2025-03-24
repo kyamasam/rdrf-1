@@ -316,7 +316,7 @@ class PatientFormMixin(PatientMixin):
             "clinician"
         ])
 
-        patient_address_section = (_("Patient Address"), None)
+        patient_address_section = (_("Contact Details/Location"), None)
 
         form_sections = [
             (

@@ -1626,7 +1626,7 @@ class PatientAddress(models.Model):
         AddressType, default=1, verbose_name=_("Address type"), on_delete=models.CASCADE,  null=True, blank=True
     )
     address = models.TextField(null=True, blank=True)
-    suburb = models.CharField(max_length=100, verbose_name=_("Suburb/Town"), null=True, blank=True)
+    suburb = models.CharField(max_length=100, verbose_name=_("Village/State"), null=True, blank=True)
     country = models.CharField(max_length=100, verbose_name=_("Country"))
     state = models.CharField("County",max_length=50)
     postcode = models.CharField(max_length=50, verbose_name=_("Postcode"),  null=True, blank=True)

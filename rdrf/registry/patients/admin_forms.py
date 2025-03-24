@@ -127,7 +127,7 @@ class PatientAddressForm(forms.ModelForm):
         fields = ('country', 'state')
 
     country = forms.ChoiceField(required=True, widget=CountryWidget())
-    state = forms.ChoiceField(required=True, widget=StateWidget())
+    state = forms.ChoiceField(required=True, widget=StateWidget(), label="County")
     # address = forms.CharField(widget=forms.Textarea(attrs={'rows': 5}))
 
     def clean_state(self):
