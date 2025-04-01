@@ -393,14 +393,24 @@
                         </div>                   
                     {% if form_types|get_form_type:s %}
                     <div class="card-body">
-                        
+
+                        {% if patient_consent %}
+                            {% if not patient_consent.allow_for_storage or not patient_consent.allow_for_follow_up %}
+                                <p class="text-danger">Cannot Display Form Patient Has Not Consented For Their Data To Be Stored In This Registry.</p>
+                            {%else%}
+                            <div data-form-name="{{s}}" data-registry-id="{{registry_id}}" data-patient-id="{{patient_id}}" data-formio-url="{{formio_url}}" id="formio"></div>
+    
+                        {% endif %}
+                        {%else%}
                         <div data-form-name="{{s}}" data-registry-id="{{registry_id}}" data-patient-id="{{patient_id}}" data-formio-url="{{formio_url}}" id="formio"></div>
+
+                        {% endif %}
+                        {% comment %} <div data-form-name="{{s}}" data-registry-id="{{registry_id}}" data-patient-id="{{patient_id}}" data-formio-url="{{formio_url}}" id="formio"></div> {% endcomment %}
                     </div>
                     {% comment %} if it is not a custom form, render the actual native section {% endcomment %}
                     {%else%}
                         
                     <div class="card-body">
-
                         
                         {% if forms|is_formset:s %}
                             {% with formset=forms|get_form_object:s %}

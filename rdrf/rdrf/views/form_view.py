@@ -1189,7 +1189,6 @@ class FormView(View):
                     initial_data = [""]  # this appears to forms
 
                 form_section[s] = form_set_class(initial=initial_data, prefix=prefix)
-
         context = {
             "CREATE_MODE": self.CREATE_MODE,
             "old_style_demographics": self.registry.code != "fkrp",
@@ -1206,6 +1205,7 @@ class FormView(View):
             "patient_link": PatientLocator(self.registry, patient_model).link,
             "patient": patient_model,
             "patient_name": self._get_patient_name(),
+            "patient_consent": self._get_patient_consent(),
             "sections": sections,
             "formio_url": FORMIO_URL,
             "forms": form_section,
@@ -1247,7 +1247,8 @@ class FormView(View):
 
         context.update(kwargs)
         return context
-
+    def _get_patient_consent(self):
+        return PatientConsent.objects.filter(patient_id=self.patient_id).first()
     def _get_patient_id(self):
         return self.patient_id
 
