@@ -37,7 +37,7 @@ class DataLoader(object):
                        ("title", "B"),
                        ("fax", "N"),
                        ("sex", "E", self.get_sex),
-                       ("postcode", "L"),
+                       ("landmark", "L"),
                        ("surgery_name", "G"),
                        ("speciality", "F"),
                        ("address", ["H", "I"]),

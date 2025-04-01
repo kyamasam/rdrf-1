@@ -17,12 +17,12 @@ logger = logging.getLogger(__name__)
 class VisDownload:
     ZIP_NAME = "CICVisualisationDownload%s%s.zip"
     PATIENTS_FILENAME = "patients.csv"
-    PATIENTS_HEADER = "PID,UMRN,GIVENNAMES,FAMILYNAME,DOB,ADDRESS,SUBURB,POSTCODE\n"
+    PATIENTS_HEADER = "PID,UMRN,GIVENNAMES,FAMILYNAME,DOB,ADDRESS,SUBURB,landmark\n"
     PATIENTS_DATA_FILENAME = "patients_data.csv"
     PATIENTS_DATA_HEADER = "PID,QUESTIONNAIRE,CDE,QUESTION,VALUE,COLLECTIONDATE,RESPONSETYPE,FORM,INDEX\n"
     ADDRESS_FIELD = "Ptaddress1"
     SUBURB_FIELD = "Ptaddress2"
-    POSTCODE_FIELD = "Ptaddress3"
+    landmark_FIELD = "Ptaddress3"
     UMRN_FIELD = "PMI"
 
 
@@ -170,8 +170,8 @@ class VisualisationDownloader:
             self._update_address(pid, "address", value)
         elif cde_code == VisDownload.SUBURB_FIELD:
             self._update_address(pid, "suburb", value)
-        elif cde_code == VisDownload.POSTCODE_FIELD:
-            self._update_address(pid, "postcode", value)
+        elif cde_code == VisDownload.landmark_FIELD:
+            self._update_address(pid, "landmark", value)
 
     def _check_umrn(self, pid, cde_code, value):
         if cde_code == VisDownload.UMRN_FIELD:
@@ -196,12 +196,12 @@ class VisualisationDownloader:
 
             address = self._get_address_field(pid, "address")
             suburb = self._get_address_field(pid, "suburb")
-            postcode = self._get_address_field(pid, "postcode")
+            landmark = self._get_address_field(pid, "landmark")
             if patient.umrn:
                 umrn = patient.umrn
             else:
                 umrn = self._get_umrn(pid)
-            file.write(f"{pid}{d}{umrn}{d}{given_names}{d}{family_name}{d}{dob}{d}{address}{d}{suburb}{d}{postcode}\n")
+            file.write(f"{pid}{d}{umrn}{d}{given_names}{d}{family_name}{d}{dob}{d}{address}{d}{suburb}{d}{landmark}\n")
 
         except Patient.DoesNotExist:
             logger.error(f"vis download: patient {pid} does not exist")

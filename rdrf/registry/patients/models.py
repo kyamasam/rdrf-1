@@ -1664,6 +1664,8 @@ class PatientConsent(models.Model):
         null=True,
     )
     filename = models.CharField(max_length=255)
+    allow_for_storage = models.BooleanField("Is the patient able and willing to allow his/her personal data to be added in this registry, and stored until such a time he/she withdraws consent/permission?",default=False)
+    allow_for_follow_up = models.BooleanField("Is the patient willing to be contacted for follow-up and further assessment? Y/N",default=False)
 
 
 class PatientDoctor(models.Model):

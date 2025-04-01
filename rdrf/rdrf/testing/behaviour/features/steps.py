@@ -85,7 +85,7 @@ def try_to_register(step, registry, client_name, email_address, password):
         ('id_parent_guardian_suburb', 'Australia'),
         # Country dropdown
         # State dropdown
-        ('id_parent_guardian_postcode', '6000'),
+        ('id_parent_guardian_landmark', '6000'),
         ('id_parent_guardian_phone', '98765432')
     ])
 
