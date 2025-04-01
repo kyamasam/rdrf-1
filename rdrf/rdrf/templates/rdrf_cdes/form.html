@@ -396,7 +396,7 @@
 
                         {% if patient_consent %}
                             {% if not patient_consent.allow_for_storage or not patient_consent.allow_for_follow_up %}
-                                <p class="text-danger">Cannot Display Form Patient Has Not Consented For Their Data To Be Stored In This Registry.</p>
+                                <p class="text-danger">Cannot Display Form. Patient Has Not Consented For Their Data To Be Stored In This Registry.</p>
                             {%else%}
                             <div data-form-name="{{s}}" data-registry-id="{{registry_id}}" data-patient-id="{{patient_id}}" data-formio-url="{{formio_url}}" id="formio"></div>
     
